@@ -1,0 +1,28 @@
+{
+  "project": "NumPy",
+  "version": "2.4.4",
+  "license": "BSD-3-Clause",
+  "adapted_functions": [
+    "aquicksort_",
+    "aheapsort_"
+  ],
+  "destination": "src/quality/quantiles.cpp",
+  "runtime_dependency": false,
+  "sources": [
+    {
+      "file": "quicksort.cpp",
+      "url": "https://raw.githubusercontent.com/numpy/numpy/v2.4.4/numpy/_core/src/npysort/quicksort.cpp",
+      "sha256": "5c9c2d96425630efcc64d373040e5c0b795e1dda24907e0a344c80c1ccb33e16"
+    },
+    {
+      "file": "npysort_heapsort.h",
+      "url": "https://raw.githubusercontent.com/numpy/numpy/v2.4.4/numpy/_core/src/npysort/npysort_heapsort.h",
+      "sha256": "9dd5961f14f7fcda98e53adbd638cb4c5b7e7b4090935851fab3eb465002a579"
+    },
+    {
+      "file": "LICENSE.txt",
+      "url": "https://raw.githubusercontent.com/numpy/numpy/v2.4.4/LICENSE.txt",
+      "sha256": "1be1df33863f97a7bc1c4d67980bd6c69c9a6fef0a5ee76e6ad6cb91e56e8491"
+    }
+  ]
+}

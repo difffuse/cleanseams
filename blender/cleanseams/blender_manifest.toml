@@ -1,0 +1,32 @@
+schema_version = "1.0.0"
+
+id = "cleanseams"
+version = "0.3.0"
+name = "Clean Seams"
+tagline = "Quad-flow seams and clean UV contours, validated before applied"
+maintainer = "cleanseams contributors"
+type = "add-on"
+
+tags = ["UV", "Mesh"]
+blender_version_min = "5.2.0"
+license = [
+  "SPDX:GPL-3.0-or-later",
+]
+
+# Default source target. The packager writes exactly one probed target into each staged
+# archive after checking its native binaries. Release verification additionally requires
+# the installed-artifact smoke; a target list alone is not a qualification record.
+platforms = ["macos-arm64"]
+
+# The native engine (cleanseams_native for this Blender's SOABI, with libcleanseams_core)
+# ships in the package's native/ directory, where native_module.py loads it; the same
+# binaries are also published as a separate cleanseams_native wheel for that ABI. There is
+# no Python engine to fall back to.
+wheels = []
+
+[build]
+paths_exclude_pattern = [
+  "__pycache__/",
+  "*.pyc",
+  ".DS_Store",
+]

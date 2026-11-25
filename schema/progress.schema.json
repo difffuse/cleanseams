@@ -1,0 +1,55 @@
+{
+  "$id": "urn:cleanseams:progress:1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "default": {
+    "counters": {},
+    "done": 0,
+    "elapsed_s": 0.0,
+    "eta_s": null,
+    "stage": "",
+    "total": 0
+  },
+  "description": "Structural wire contract; native validation also checks indices, lengths and cross-field invariants.",
+  "properties": {
+    "counters": {
+      "default": {}
+    },
+    "done": {
+      "default": 0,
+      "maximum": 18446744073709551615,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "elapsed_s": {
+      "default": 0.0,
+      "type": "number"
+    },
+    "eta_s": {
+      "default": null,
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "stage": {
+      "default": "",
+      "type": "string"
+    },
+    "total": {
+      "default": 0,
+      "maximum": 18446744073709551615,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "stage",
+    "done",
+    "total",
+    "elapsed_s",
+    "eta_s",
+    "counters"
+  ],
+  "type": "object"
+}

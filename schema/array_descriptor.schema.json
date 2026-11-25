@@ -1,0 +1,54 @@
+{
+  "$id": "urn:cleanseams:array_descriptor:1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Structural wire contract; native validation also checks indices, lengths and cross-field invariants.",
+  "properties": {
+    "byte_length": {
+      "maximum": 18446744073709551615,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "byte_offset": {
+      "maximum": 18446744073709551615,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "dtype": {
+      "enum": [
+        "float64-le",
+        "int64-le",
+        "uint64-le",
+        "uint8"
+      ],
+      "type": "string"
+    },
+    "file": {
+      "description": "Relative path; T18 additionally rejects absolute paths, traversal and symlink escape.",
+      "minLength": 1,
+      "type": "string"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "shape": {
+      "items": {
+        "maximum": 18446744073709551615,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "minItems": 1,
+      "type": "array"
+    }
+  },
+  "required": [
+    "file",
+    "dtype",
+    "shape",
+    "byte_offset",
+    "byte_length",
+    "sha256"
+  ],
+  "type": "object"
+}

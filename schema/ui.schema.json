@@ -1,0 +1,586 @@
+{
+  "$id": "urn:cleanseams:ui:1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "default": {
+    "allow_attribute": "cleanseams_allow",
+    "avoid_attribute": "cleanseams_avoid",
+    "budget": "normal",
+    "cavity_confidence": 25,
+    "contour_mode": "auto",
+    "corridor_rings": 2,
+    "deadline_s": 0.0,
+    "enhanced_cavities": true,
+    "enhanced_regions": false,
+    "enhanced_relief": true,
+    "enhanced_rings": true,
+    "enhanced_shells": true,
+    "enhanced_sliding": true,
+    "enhanced_spur_removal": true,
+    "feature_angle": 60.0,
+    "forbidden_attribute": "cleanseams_forbidden",
+    "generate": true,
+    "hide_direction": [
+      0.0,
+      -1.0,
+      0.0
+    ],
+    "hide_from": "none",
+    "keep_orientation": true,
+    "last_messages": "",
+    "last_report": "",
+    "last_status": "",
+    "max_candidates_per_chart": 8,
+    "max_displacement": 1.5,
+    "max_slide_distance": 0.0,
+    "max_solves_per_chart": 24,
+    "min_fusion": 0.15,
+    "min_island": 0.2,
+    "min_island_faces": 8,
+    "pack_after": "none",
+    "pack_border": 2.0,
+    "pack_height": 2048,
+    "pack_padding": 4.0,
+    "pack_tiles": "1001",
+    "pack_width": 2048,
+    "policy": "native_baseline",
+    "profile": "hard_surface",
+    "protect_existing": true,
+    "prune_dominated": true,
+    "reference_length": 0.0,
+    "refine_paths": true,
+    "required_attribute": "cleanseams_required",
+    "ring_confidence": 15,
+    "scale_mode": "physical",
+    "shell_confidence": 50,
+    "show_advanced": false,
+    "show_enhanced": false,
+    "smooth_radius": 3.0,
+    "solver_iterations": 10,
+    "symmetry_mode": "asymmetric",
+    "symmetry_offset": 0.0,
+    "symmetry_on_conflict": "reject_pair",
+    "symmetry_plane": "detect",
+    "target_enabled": false,
+    "target_max": 8,
+    "target_min": 3,
+    "w_drift": 3.0,
+    "w_flow": 2.0,
+    "w_turn": 4.0
+  },
+  "description": "Structural wire contract; native validation also checks indices, lengths and cross-field invariants.",
+  "properties": {
+    "allow_attribute": {
+      "default": "cleanseams_allow",
+      "description": "POINT FLOAT attribute in [0, 1] where seams are welcome; empty disables",
+      "title": "Welcome seams",
+      "type": "string"
+    },
+    "avoid_attribute": {
+      "default": "cleanseams_avoid",
+      "description": "POINT FLOAT attribute in [0, 1] where seams should be avoided; empty disables",
+      "title": "Avoided seams",
+      "type": "string"
+    },
+    "budget": {
+      "default": "normal",
+      "enum": [
+        "tight",
+        "normal",
+        "loose"
+      ],
+      "title": "Distortion budget",
+      "type": "string"
+    },
+    "cavity_confidence": {
+      "default": 25,
+      "description": "Recesses with less occlusion evidence are reported, not proposed (percent of the full evidence)",
+      "maximum": 100,
+      "minimum": 0,
+      "title": "Cavity confidence %",
+      "type": "integer"
+    },
+    "contour_mode": {
+      "default": "auto",
+      "enum": [
+        "auto",
+        "panels",
+        "organic",
+        "off"
+      ],
+      "title": "Contours",
+      "type": "string"
+    },
+    "corridor_rings": {
+      "default": 2,
+      "maximum": 6,
+      "minimum": 1,
+      "title": "Corridor rings",
+      "type": "integer"
+    },
+    "deadline_s": {
+      "default": 0.0,
+      "description": "Return a validated partial layout when time runs out; 0 is unlimited. An active solve finishes before the budget is checked again",
+      "minimum": 0.0,
+      "title": "Time budget (seconds)",
+      "type": "number"
+    },
+    "enhanced_cavities": {
+      "default": true,
+      "description": "Rings and interior slits around occluded recesses",
+      "title": "Cavity rings",
+      "type": "boolean"
+    },
+    "enhanced_regions": {
+      "default": false,
+      "description": "Re-partition over-budget islands along welcome seams (painted allow, creases), away from avoided ones",
+      "title": "Preference-aware regions",
+      "type": "boolean"
+    },
+    "enhanced_relief": {
+      "default": true,
+      "description": "Short slits at distortion hotspots of over-budget islands, before any broad split",
+      "title": "Relief slits",
+      "type": "boolean"
+    },
+    "enhanced_rings": {
+      "default": true,
+      "description": "Closed cuts around necks and creases, with their companion cuts",
+      "title": "Constriction rings",
+      "type": "boolean"
+    },
+    "enhanced_shells": {
+      "default": true,
+      "description": "Front/back splits of thin parts along their rims",
+      "title": "Thin-shell rims",
+      "type": "boolean"
+    },
+    "enhanced_sliding": {
+      "default": true,
+      "description": "Propose moving the slit of a tube-like part to its least exposed side along the rims; applied only when the validated result ranks better",
+      "title": "Slide tube slits",
+      "type": "boolean"
+    },
+    "enhanced_spur_removal": {
+      "default": true,
+      "description": "Remove seam dead ends whose removal passes validation; necessary relief ends stay",
+      "title": "Remove unnecessary spurs",
+      "type": "boolean"
+    },
+    "feature_angle": {
+      "default": 60.0,
+      "description": "Edges sharper than this (degrees) become seams and are never merged away; 0 disables",
+      "maximum": 180.0,
+      "minimum": 0.0,
+      "title": "Feature angle",
+      "type": "number"
+    },
+    "forbidden_attribute": {
+      "default": "cleanseams_forbidden",
+      "description": "EDGE BOOLEAN attribute of edges that must never become seams; empty disables",
+      "title": "Forbidden seams",
+      "type": "string"
+    },
+    "generate": {
+      "default": true,
+      "description": "Trace the quad layout and merge patches under the distortion budget. Off: only refine the existing seams and clean the contours",
+      "title": "Generate seams",
+      "type": "boolean"
+    },
+    "hide_direction": {
+      "default": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "description": "Direction from the object toward the viewer, in object coordinates",
+      "items": {
+        "default": 0.0,
+        "type": "number"
+      },
+      "maxItems": 3,
+      "minItems": 3,
+      "title": "Viewing direction",
+      "type": "array"
+    },
+    "hide_from": {
+      "default": "none",
+      "enum": [
+        "none",
+        "view",
+        "custom",
+        "+X",
+        "-X",
+        "+Y",
+        "-Y",
+        "+Z",
+        "-Z"
+      ],
+      "title": "Hide seams from",
+      "type": "string"
+    },
+    "keep_orientation": {
+      "default": true,
+      "title": "Keep island orientation",
+      "type": "boolean"
+    },
+    "last_messages": {
+      "default": "",
+      "title": "Last messages",
+      "type": "string"
+    },
+    "last_report": {
+      "default": "",
+      "title": "Last report",
+      "type": "string"
+    },
+    "last_status": {
+      "default": "",
+      "title": "Last status",
+      "type": "string"
+    },
+    "max_candidates_per_chart": {
+      "default": 8,
+      "description": "Complete alternative layouts evaluated per island in one pass",
+      "maximum": 1024,
+      "minimum": 1,
+      "title": "Candidates per island",
+      "type": "integer"
+    },
+    "max_displacement": {
+      "default": 1.5,
+      "description": "Band for smoothed contours, in edge lengths",
+      "maximum": 6.0,
+      "minimum": 0.1,
+      "title": "Max displacement",
+      "type": "number"
+    },
+    "max_slide_distance": {
+      "default": 0.0,
+      "description": "Object-space distance a slit end may move along a rim; 0 is unlimited",
+      "minimum": 0.0,
+      "title": "Max slide distance",
+      "type": "number"
+    },
+    "max_solves_per_chart": {
+      "default": 24,
+      "description": "Unwraps of proposals per island in one pass",
+      "maximum": 4096,
+      "minimum": 1,
+      "title": "Solves per island",
+      "type": "integer"
+    },
+    "min_fusion": {
+      "default": 0.15,
+      "description": "A merge must remove at least this share of the smaller island's outline",
+      "maximum": 0.9,
+      "minimum": 0.0,
+      "title": "Min fusion",
+      "type": "number"
+    },
+    "min_island": {
+      "default": 0.2,
+      "description": "Islands smaller than this share of the surface are merged into a neighbour under a relaxed budget",
+      "maximum": 10.0,
+      "minimum": 0.0,
+      "title": "Absorb islands below %",
+      "type": "number"
+    },
+    "min_island_faces": {
+      "default": 8,
+      "description": "Absorb smaller islands into a validated neighbour, except whole components and boundaries protected by the artist",
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Minimum island faces",
+      "type": "integer"
+    },
+    "pack_after": {
+      "default": "none",
+      "enum": [
+        "none",
+        "blender"
+      ],
+      "title": "Then pack with",
+      "type": "string"
+    },
+    "pack_border": {
+      "default": 2.0,
+      "minimum": 0,
+      "title": "Tile border (texels)",
+      "type": "number"
+    },
+    "pack_height": {
+      "default": 2048,
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Texture height",
+      "type": "integer"
+    },
+    "pack_padding": {
+      "default": 4.0,
+      "minimum": 0,
+      "title": "Island gap (texels)",
+      "type": "number"
+    },
+    "pack_tiles": {
+      "default": "1001",
+      "description": "Comma-separated UDIM tiles, for example 1001,1002",
+      "title": "UDIM tiles",
+      "type": "string"
+    },
+    "pack_width": {
+      "default": 2048,
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Texture width",
+      "type": "integer"
+    },
+    "policy": {
+      "default": "native_baseline",
+      "description": "Native baseline, the default, or the enhanced proposal pass after it",
+      "enum": [
+        "native_baseline",
+        "enhanced_v1"
+      ],
+      "title": "Seam policy",
+      "type": "string"
+    },
+    "profile": {
+      "default": "hard_surface",
+      "enum": [
+        "auto",
+        "hard_surface",
+        "organic",
+        "custom"
+      ],
+      "title": "Profile",
+      "type": "string"
+    },
+    "protect_existing": {
+      "default": true,
+      "description": "Seams already on the mesh are kept as locked cuts",
+      "title": "Protect existing seams",
+      "type": "boolean"
+    },
+    "prune_dominated": {
+      "default": true,
+      "description": "Refuse, before unwrapping, a proposal whose seams alone prove it cannot beat the kept layout",
+      "title": "Skip provably worse",
+      "type": "boolean"
+    },
+    "reference_length": {
+      "default": 0.0,
+      "description": "Object-space length unit of the physical distances; 0 uses the median edge length. Give the same value to compare different tessellations",
+      "minimum": 0.0,
+      "title": "Reference length",
+      "type": "number"
+    },
+    "refine_paths": {
+      "default": true,
+      "description": "Re-route open seam chains inside a corridor so they stop hopping between quad rows; anchors, junctions and locked seams are kept",
+      "title": "Refine seam paths",
+      "type": "boolean"
+    },
+    "required_attribute": {
+      "default": "cleanseams_required",
+      "description": "EDGE BOOLEAN attribute of edges that must be seams; empty disables",
+      "title": "Required seams",
+      "type": "string"
+    },
+    "ring_confidence": {
+      "default": 15,
+      "description": "Rings with less constriction or crease evidence are reported, not proposed (percent of the full evidence)",
+      "maximum": 100,
+      "minimum": 0,
+      "title": "Ring confidence %",
+      "type": "integer"
+    },
+    "scale_mode": {
+      "default": "physical",
+      "description": "How the enhanced features measure distances and sizes",
+      "enum": [
+        "physical",
+        "hops"
+      ],
+      "title": "Distances",
+      "type": "string"
+    },
+    "shell_confidence": {
+      "default": 50,
+      "description": "Thin parts with less front/back evidence are reported, not proposed (percent of the full evidence)",
+      "maximum": 100,
+      "minimum": 0,
+      "title": "Shell confidence %",
+      "type": "integer"
+    },
+    "show_advanced": {
+      "default": false,
+      "title": "Advanced",
+      "type": "boolean"
+    },
+    "show_enhanced": {
+      "default": false,
+      "title": "Enhanced settings",
+      "type": "boolean"
+    },
+    "smooth_radius": {
+      "default": 3.0,
+      "description": "In local edge lengths",
+      "maximum": 12.0,
+      "minimum": 0.5,
+      "title": "Smooth radius",
+      "type": "number"
+    },
+    "solver_iterations": {
+      "default": 10,
+      "description": "Minimum-stretch iterations of Blender's unwrap",
+      "maximum": 50,
+      "minimum": 1,
+      "title": "Solver iterations",
+      "type": "integer"
+    },
+    "symmetry_mode": {
+      "default": "asymmetric",
+      "description": "Whether seam moves are mirrored",
+      "enum": [
+        "asymmetric",
+        "strict",
+        "approximate"
+      ],
+      "title": "Symmetry",
+      "type": "string"
+    },
+    "symmetry_offset": {
+      "default": 0.0,
+      "description": "Position of an axis mirror plane along its axis, in object coordinates",
+      "title": "Plane offset",
+      "type": "number"
+    },
+    "symmetry_on_conflict": {
+      "default": "reject_pair",
+      "description": "What strict symmetry does when the mirror half breaks a lock, pin, anchor or painted constraint",
+      "enum": [
+        "reject_pair",
+        "disable_for_proposal"
+      ],
+      "title": "On a mirror conflict",
+      "type": "string"
+    },
+    "symmetry_plane": {
+      "default": "detect",
+      "description": "Detected, or an object-axis plane at the offset",
+      "enum": [
+        "detect",
+        "X",
+        "Y",
+        "Z"
+      ],
+      "title": "Mirror plane",
+      "type": "string"
+    },
+    "target_enabled": {
+      "default": false,
+      "description": "Search up to five distortion budgets; an unreachable target is reported",
+      "title": "Target island count",
+      "type": "boolean"
+    },
+    "target_max": {
+      "default": 8,
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Maximum",
+      "type": "integer"
+    },
+    "target_min": {
+      "default": 3,
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Minimum",
+      "type": "integer"
+    },
+    "w_drift": {
+      "default": 3.0,
+      "maximum": 20.0,
+      "minimum": 0.0,
+      "title": "Drift weight",
+      "type": "number"
+    },
+    "w_flow": {
+      "default": 2.0,
+      "maximum": 20.0,
+      "minimum": 0.0,
+      "title": "Flow weight",
+      "type": "number"
+    },
+    "w_turn": {
+      "default": 4.0,
+      "maximum": 20.0,
+      "minimum": 0.0,
+      "title": "Turn weight",
+      "type": "number"
+    }
+  },
+  "required": [
+    "profile",
+    "generate",
+    "protect_existing",
+    "feature_angle",
+    "refine_paths",
+    "contour_mode",
+    "budget",
+    "min_island",
+    "solver_iterations",
+    "min_island_faces",
+    "target_enabled",
+    "target_min",
+    "target_max",
+    "deadline_s",
+    "hide_from",
+    "hide_direction",
+    "show_advanced",
+    "w_turn",
+    "w_flow",
+    "w_drift",
+    "corridor_rings",
+    "smooth_radius",
+    "max_displacement",
+    "min_fusion",
+    "pack_after",
+    "keep_orientation",
+    "pack_width",
+    "pack_height",
+    "pack_padding",
+    "pack_border",
+    "pack_tiles",
+    "last_status",
+    "last_report",
+    "policy",
+    "show_enhanced",
+    "enhanced_sliding",
+    "max_slide_distance",
+    "enhanced_relief",
+    "enhanced_regions",
+    "enhanced_rings",
+    "ring_confidence",
+    "enhanced_cavities",
+    "cavity_confidence",
+    "enhanced_shells",
+    "shell_confidence",
+    "enhanced_spur_removal",
+    "symmetry_mode",
+    "symmetry_on_conflict",
+    "symmetry_plane",
+    "symmetry_offset",
+    "scale_mode",
+    "reference_length",
+    "required_attribute",
+    "forbidden_attribute",
+    "allow_attribute",
+    "avoid_attribute",
+    "max_candidates_per_chart",
+    "max_solves_per_chart",
+    "prune_dominated",
+    "last_messages"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,9 @@
+{
+  "version": "3.13.13",
+  "url": "https://www.python.org/ftp/python/3.13.13/Python-3.13.13.tgz",
+  "sha256": "f9cde7b0e2ec8165d7326e2a0f59ea2686ce9d0c617dbbb3d66a7e54d31b74b9",
+  "official_release": "https://www.python.org/downloads/release/python-31313/",
+  "blender_pyconfig": "/Applications/Blender.app/Contents/Resources/5.2/python/include/python3.13/pyconfig.h",
+  "pyconfig_sha256": "a3a453172748fe6a0cff502dde3966abfdac60bc401716ffe29412250af9d246",
+  "note": "Build-only headers from exact official CPython release plus actual host pyconfig; not a copied or substituted interpreter."
+}

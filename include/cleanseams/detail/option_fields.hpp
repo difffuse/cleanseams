@@ -1,0 +1,692 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+#pragma once
+namespace cleanseams {
+template<class F> void visit_fields(LayoutOptions& v, F&& f) {
+    f("seeding",v.seeding);
+    f("seed_density",v.seed_density);
+    f("max_patches",v.max_patches);
+    f("segment_iterations",v.segment_iterations);
+    f("relaxed_motorcycles",v.relaxed_motorcycles);
+    f("feature_angle",v.feature_angle);
+    f("prefer_features",v.prefer_features);
+    f("lock_features",v.lock_features);
+    f("feature_lock_fraction",v.feature_lock_fraction);
+    f("min_feature_chain",v.min_feature_chain);
+    f("feature_scale",v.feature_scale);
+    f("feature_nms_ratio",v.feature_nms_ratio);
+    f("max_extend",v.max_extend);
+    f("max_defect",v.max_defect);
+    f("min_island_fraction",v.min_island_fraction);
+    f("min_island_faces",v.min_island_faces);
+    f("strip_isoperimetric",v.strip_isoperimetric);
+    f("absorb_relax",v.absorb_relax);
+    f("strict_budget",v.strict_budget);
+    f("max_anisotropy_p95",v.max_anisotropy_p95);
+    f("max_area_p95",v.max_area_p95);
+    f("max_anisotropy_p99",v.max_anisotropy_p99);
+    f("max_anisotropy_max",v.max_anisotropy_max);
+    f("max_faces_fraction",v.max_faces_fraction);
+    f("max_rounds",v.max_rounds);
+    f("max_merge_edges",v.max_merge_edges);
+    f("evaluate_true_distortion",v.evaluate_true_distortion);
+    f("solver",v.solver);
+    f("priority",v.priority);
+    f("min_fusion",v.min_fusion);
+    f("max_split_passes",v.max_split_passes);
+    f("split_min_faces",v.split_min_faces);
+    f("arap_iterations",v.arap_iterations);
+    f("use_exposure",v.use_exposure);
+    f("exposure_K",v.exposure_K);
+    f("exposure_weight",v.exposure_weight);
+    f("hide_dir",v.hide_dir);
+    f("revolution_residual",v.revolution_residual);
+    f("max_isoperimetric_growth",v.max_isoperimetric_growth);
+    f("isoperimetric_min_faces",v.isoperimetric_min_faces);
+    f("arc_moves",v.arc_moves);
+    f("spur_removal",v.spur_removal);
+    f("strip_max_width",v.strip_max_width);
+}
+template<class F> void visit_fields(const LayoutOptions& v, F&& f) {
+    f("seeding",v.seeding);
+    f("seed_density",v.seed_density);
+    f("max_patches",v.max_patches);
+    f("segment_iterations",v.segment_iterations);
+    f("relaxed_motorcycles",v.relaxed_motorcycles);
+    f("feature_angle",v.feature_angle);
+    f("prefer_features",v.prefer_features);
+    f("lock_features",v.lock_features);
+    f("feature_lock_fraction",v.feature_lock_fraction);
+    f("min_feature_chain",v.min_feature_chain);
+    f("feature_scale",v.feature_scale);
+    f("feature_nms_ratio",v.feature_nms_ratio);
+    f("max_extend",v.max_extend);
+    f("max_defect",v.max_defect);
+    f("min_island_fraction",v.min_island_fraction);
+    f("min_island_faces",v.min_island_faces);
+    f("strip_isoperimetric",v.strip_isoperimetric);
+    f("absorb_relax",v.absorb_relax);
+    f("strict_budget",v.strict_budget);
+    f("max_anisotropy_p95",v.max_anisotropy_p95);
+    f("max_area_p95",v.max_area_p95);
+    f("max_anisotropy_p99",v.max_anisotropy_p99);
+    f("max_anisotropy_max",v.max_anisotropy_max);
+    f("max_faces_fraction",v.max_faces_fraction);
+    f("max_rounds",v.max_rounds);
+    f("max_merge_edges",v.max_merge_edges);
+    f("evaluate_true_distortion",v.evaluate_true_distortion);
+    f("solver",v.solver);
+    f("priority",v.priority);
+    f("min_fusion",v.min_fusion);
+    f("max_split_passes",v.max_split_passes);
+    f("split_min_faces",v.split_min_faces);
+    f("arap_iterations",v.arap_iterations);
+    f("use_exposure",v.use_exposure);
+    f("exposure_K",v.exposure_K);
+    f("exposure_weight",v.exposure_weight);
+    f("hide_dir",v.hide_dir);
+    f("revolution_residual",v.revolution_residual);
+    f("max_isoperimetric_growth",v.max_isoperimetric_growth);
+    f("isoperimetric_min_faces",v.isoperimetric_min_faces);
+    f("arc_moves",v.arc_moves);
+    f("spur_removal",v.spur_removal);
+    f("strip_max_width",v.strip_max_width);
+}
+template<class F> void visit_fields(PathOptions& v, F&& f) {
+    f("corridor_rings",v.corridor_rings);
+    f("corridor_max_rings",v.corridor_max_rings);
+    f("w_turn",v.w_turn);
+    f("w_flow",v.w_flow);
+    f("w_drift",v.w_drift);
+    f("w_convex",v.w_convex);
+    f("w_exposure",v.w_exposure);
+    f("anchor_tangent_weight",v.anchor_tangent_weight);
+    f("variants",v.variants);
+    f("require_improvement",v.require_improvement);
+    f("require_budget",v.require_budget);
+}
+template<class F> void visit_fields(const PathOptions& v, F&& f) {
+    f("corridor_rings",v.corridor_rings);
+    f("corridor_max_rings",v.corridor_max_rings);
+    f("w_turn",v.w_turn);
+    f("w_flow",v.w_flow);
+    f("w_drift",v.w_drift);
+    f("w_convex",v.w_convex);
+    f("w_exposure",v.w_exposure);
+    f("anchor_tangent_weight",v.anchor_tangent_weight);
+    f("variants",v.variants);
+    f("require_improvement",v.require_improvement);
+    f("require_budget",v.require_budget);
+}
+template<class F> void visit_fields(BoundaryOptions& v, F&& f) {
+    f("mode",v.mode);
+    f("intensities",v.intensities);
+    f("corner_angle",v.corner_angle);
+    f("straight_angle",v.straight_angle);
+    f("smooth_radius",v.smooth_radius);
+    f("max_displacement",v.max_displacement);
+    f("straight_tolerance",v.straight_tolerance);
+    f("p95_growth",v.p95_growth);
+    f("max_growth",v.max_growth);
+    f("abs_anisotropy_p95",v.abs_anisotropy_p95);
+    f("abs_area_p95",v.abs_area_p95);
+    f("min_closed_anchors",v.min_closed_anchors);
+    f("arap_iterations",v.arap_iterations);
+}
+template<class F> void visit_fields(const BoundaryOptions& v, F&& f) {
+    f("mode",v.mode);
+    f("intensities",v.intensities);
+    f("corner_angle",v.corner_angle);
+    f("straight_angle",v.straight_angle);
+    f("smooth_radius",v.smooth_radius);
+    f("max_displacement",v.max_displacement);
+    f("straight_tolerance",v.straight_tolerance);
+    f("p95_growth",v.p95_growth);
+    f("max_growth",v.max_growth);
+    f("abs_anisotropy_p95",v.abs_anisotropy_p95);
+    f("abs_area_p95",v.abs_area_p95);
+    f("min_closed_anchors",v.min_closed_anchors);
+    f("arap_iterations",v.arap_iterations);
+}
+template<class F> void visit_fields(PackOptions& v, F&& f) {
+    f("texture_width",v.texture_width);
+    f("texture_height",v.texture_height);
+    f("padding_px",v.padding_px);
+    f("border_px",v.border_px);
+    f("tiles",v.tiles);
+    f("keep_orientation",v.keep_orientation);
+    f("allow_mirroring",v.allow_mirroring);
+    f("equalize_density",v.equalize_density);
+    f("time_budget",v.time_budget);
+    f("trials",v.trials);
+    f("threads",v.threads);
+}
+template<class F> void visit_fields(const PackOptions& v, F&& f) {
+    f("texture_width",v.texture_width);
+    f("texture_height",v.texture_height);
+    f("padding_px",v.padding_px);
+    f("border_px",v.border_px);
+    f("tiles",v.tiles);
+    f("keep_orientation",v.keep_orientation);
+    f("allow_mirroring",v.allow_mirroring);
+    f("equalize_density",v.equalize_density);
+    f("time_budget",v.time_budget);
+    f("trials",v.trials);
+    f("threads",v.threads);
+}
+template<class F> void visit_fields(UiSettings& v, F&& f) {
+    f("profile",v.profile);
+    f("generate",v.generate);
+    f("protect_existing",v.protect_existing);
+    f("feature_angle",v.feature_angle);
+    f("refine_paths",v.refine_paths);
+    f("contour_mode",v.contour_mode);
+    f("budget",v.budget);
+    f("min_island",v.min_island);
+    f("solver_iterations",v.solver_iterations);
+    f("min_island_faces",v.min_island_faces);
+    f("target_enabled",v.target_enabled);
+    f("target_min",v.target_min);
+    f("target_max",v.target_max);
+    f("deadline_s",v.deadline_s);
+    f("hide_from",v.hide_from);
+    f("hide_direction",v.hide_direction);
+    f("show_advanced",v.show_advanced);
+    f("w_turn",v.w_turn);
+    f("w_flow",v.w_flow);
+    f("w_drift",v.w_drift);
+    f("corridor_rings",v.corridor_rings);
+    f("smooth_radius",v.smooth_radius);
+    f("max_displacement",v.max_displacement);
+    f("min_fusion",v.min_fusion);
+    f("pack_after",v.pack_after);
+    f("keep_orientation",v.keep_orientation);
+    f("pack_width",v.pack_width);
+    f("pack_height",v.pack_height);
+    f("pack_padding",v.pack_padding);
+    f("pack_border",v.pack_border);
+    f("pack_tiles",v.pack_tiles);
+    f("last_status",v.last_status);
+    f("last_report",v.last_report);
+    f("policy",v.policy);
+    f("show_enhanced",v.show_enhanced);
+    f("enhanced_sliding",v.enhanced_sliding);
+    f("max_slide_distance",v.max_slide_distance);
+    f("enhanced_relief",v.enhanced_relief);
+    f("enhanced_regions",v.enhanced_regions);
+    f("enhanced_rings",v.enhanced_rings);
+    f("ring_confidence",v.ring_confidence);
+    f("enhanced_cavities",v.enhanced_cavities);
+    f("cavity_confidence",v.cavity_confidence);
+    f("enhanced_shells",v.enhanced_shells);
+    f("shell_confidence",v.shell_confidence);
+    f("enhanced_spur_removal",v.enhanced_spur_removal);
+    f("symmetry_mode",v.symmetry_mode);
+    f("symmetry_on_conflict",v.symmetry_on_conflict);
+    f("symmetry_plane",v.symmetry_plane);
+    f("symmetry_offset",v.symmetry_offset);
+    f("scale_mode",v.scale_mode);
+    f("reference_length",v.reference_length);
+    f("required_attribute",v.required_attribute);
+    f("forbidden_attribute",v.forbidden_attribute);
+    f("allow_attribute",v.allow_attribute);
+    f("avoid_attribute",v.avoid_attribute);
+    f("max_candidates_per_chart",v.max_candidates_per_chart);
+    f("max_solves_per_chart",v.max_solves_per_chart);
+    f("prune_dominated",v.prune_dominated);
+    f("last_messages",v.last_messages);
+}
+template<class F> void visit_fields(const UiSettings& v, F&& f) {
+    f("profile",v.profile);
+    f("generate",v.generate);
+    f("protect_existing",v.protect_existing);
+    f("feature_angle",v.feature_angle);
+    f("refine_paths",v.refine_paths);
+    f("contour_mode",v.contour_mode);
+    f("budget",v.budget);
+    f("min_island",v.min_island);
+    f("solver_iterations",v.solver_iterations);
+    f("min_island_faces",v.min_island_faces);
+    f("target_enabled",v.target_enabled);
+    f("target_min",v.target_min);
+    f("target_max",v.target_max);
+    f("deadline_s",v.deadline_s);
+    f("hide_from",v.hide_from);
+    f("hide_direction",v.hide_direction);
+    f("show_advanced",v.show_advanced);
+    f("w_turn",v.w_turn);
+    f("w_flow",v.w_flow);
+    f("w_drift",v.w_drift);
+    f("corridor_rings",v.corridor_rings);
+    f("smooth_radius",v.smooth_radius);
+    f("max_displacement",v.max_displacement);
+    f("min_fusion",v.min_fusion);
+    f("pack_after",v.pack_after);
+    f("keep_orientation",v.keep_orientation);
+    f("pack_width",v.pack_width);
+    f("pack_height",v.pack_height);
+    f("pack_padding",v.pack_padding);
+    f("pack_border",v.pack_border);
+    f("pack_tiles",v.pack_tiles);
+    f("last_status",v.last_status);
+    f("last_report",v.last_report);
+    f("policy",v.policy);
+    f("show_enhanced",v.show_enhanced);
+    f("enhanced_sliding",v.enhanced_sliding);
+    f("max_slide_distance",v.max_slide_distance);
+    f("enhanced_relief",v.enhanced_relief);
+    f("enhanced_regions",v.enhanced_regions);
+    f("enhanced_rings",v.enhanced_rings);
+    f("ring_confidence",v.ring_confidence);
+    f("enhanced_cavities",v.enhanced_cavities);
+    f("cavity_confidence",v.cavity_confidence);
+    f("enhanced_shells",v.enhanced_shells);
+    f("shell_confidence",v.shell_confidence);
+    f("enhanced_spur_removal",v.enhanced_spur_removal);
+    f("symmetry_mode",v.symmetry_mode);
+    f("symmetry_on_conflict",v.symmetry_on_conflict);
+    f("symmetry_plane",v.symmetry_plane);
+    f("symmetry_offset",v.symmetry_offset);
+    f("scale_mode",v.scale_mode);
+    f("reference_length",v.reference_length);
+    f("required_attribute",v.required_attribute);
+    f("forbidden_attribute",v.forbidden_attribute);
+    f("allow_attribute",v.allow_attribute);
+    f("avoid_attribute",v.avoid_attribute);
+    f("max_candidates_per_chart",v.max_candidates_per_chart);
+    f("max_solves_per_chart",v.max_solves_per_chart);
+    f("prune_dominated",v.prune_dominated);
+    f("last_messages",v.last_messages);
+}
+template<class F> void visit_fields(SolverOptions& v, F&& f) {
+    f("method",v.method);
+    f("iterations",v.iterations);
+    f("backend",v.backend);
+}
+template<class F> void visit_fields(const SolverOptions& v, F&& f) {
+    f("method",v.method);
+    f("iterations",v.iterations);
+    f("backend",v.backend);
+}
+template<class F> void visit_fields(HostOptions& v, F&& f) {
+    f("protect_existing",v.protect_existing);
+    f("pack_after",v.pack_after);
+    f("show_advanced",v.show_advanced);
+    f("last_status",v.last_status);
+    f("last_report",v.last_report);
+}
+template<class F> void visit_fields(const HostOptions& v, F&& f) {
+    f("protect_existing",v.protect_existing);
+    f("pack_after",v.pack_after);
+    f("show_advanced",v.show_advanced);
+    f("last_status",v.last_status);
+    f("last_report",v.last_report);
+}
+template<class F> void visit_fields(SignificanceOptions& v, F&& f) {
+    f("practical_floor",v.practical_floor);
+}
+template<class F> void visit_fields(const SignificanceOptions& v, F&& f) {
+    f("practical_floor",v.practical_floor);
+}
+template<class F> void visit_fields(ObjectiveOptions& v, F&& f) {
+    f("version",v.version);
+    f("w_length",v.w_length);
+    f("w_exposure",v.w_exposure);
+    f("w_turn",v.w_turn);
+    f("w_fragment",v.w_fragment);
+    f("chart_count_weight",v.chart_count_weight);
+    f("tie_band",v.tie_band);
+    f("significance",v.significance);
+}
+template<class F> void visit_fields(const ObjectiveOptions& v, F&& f) {
+    f("version",v.version);
+    f("w_length",v.w_length);
+    f("w_exposure",v.w_exposure);
+    f("w_turn",v.w_turn);
+    f("w_fragment",v.w_fragment);
+    f("chart_count_weight",v.chart_count_weight);
+    f("tie_band",v.tie_band);
+    f("significance",v.significance);
+}
+template<class F> void visit_fields(PreferenceOptions& v, F&& f) {
+    f("w_exposure",v.w_exposure);
+    f("w_view",v.w_view);
+    f("w_avoid",v.w_avoid);
+    f("w_allow",v.w_allow);
+    f("w_crease",v.w_crease);
+    f("required_attribute",v.required_attribute);
+    f("forbidden_attribute",v.forbidden_attribute);
+    f("allow_attribute",v.allow_attribute);
+    f("avoid_attribute",v.avoid_attribute);
+}
+template<class F> void visit_fields(const PreferenceOptions& v, F&& f) {
+    f("w_exposure",v.w_exposure);
+    f("w_view",v.w_view);
+    f("w_avoid",v.w_avoid);
+    f("w_allow",v.w_allow);
+    f("w_crease",v.w_crease);
+    f("required_attribute",v.required_attribute);
+    f("forbidden_attribute",v.forbidden_attribute);
+    f("allow_attribute",v.allow_attribute);
+    f("avoid_attribute",v.avoid_attribute);
+}
+template<class F> void visit_fields(EndpointSlideOptions& v, F&& f) {
+    f("enabled",v.enabled);
+    f("max_slide_distance",v.max_slide_distance);
+    f("vertex_budget",v.vertex_budget);
+    f("w_turn",v.w_turn);
+    f("w_tangent",v.w_tangent);
+    f("w_slide",v.w_slide);
+}
+template<class F> void visit_fields(RegionOptions& v, F&& f) {
+    f("enabled",v.enabled);
+    f("w_normal",v.w_normal);
+    f("w_preference",v.w_preference);
+    f("lloyd_steps",v.lloyd_steps);
+    f("max_targets",v.max_targets);
+    f("keep_feature_seams",v.keep_feature_seams);
+}
+template<class F> void visit_fields(const RegionOptions& v, F&& f) {
+    f("enabled",v.enabled);
+    f("w_normal",v.w_normal);
+    f("w_preference",v.w_preference);
+    f("lloyd_steps",v.lloyd_steps);
+    f("max_targets",v.max_targets);
+    f("keep_feature_seams",v.keep_feature_seams);
+}
+template<class F> void visit_fields(RingOptions& v, F&& f) {
+    f("enabled",v.enabled);
+    f("section_samples",v.section_samples);
+    f("low_quantile",v.low_quantile);
+    f("high_quantile",v.high_quantile);
+    f("max_candidates",v.max_candidates);
+    f("max_charts",v.max_charts);
+    f("min_confidence",v.min_confidence);
+}
+template<class F> void visit_fields(const RingOptions& v, F&& f) {
+    f("enabled",v.enabled);
+    f("section_samples",v.section_samples);
+    f("low_quantile",v.low_quantile);
+    f("high_quantile",v.high_quantile);
+    f("max_candidates",v.max_candidates);
+    f("max_charts",v.max_charts);
+    f("min_confidence",v.min_confidence);
+}
+template<class F> void visit_fields(CavityOptions& v, F&& f) {
+    f("enabled",v.enabled);
+    f("max_samples",v.max_samples);
+    f("rays_per_sample",v.rays_per_sample);
+    f("cone_half_angle_deg",v.cone_half_angle_deg);
+    f("reach_fraction",v.reach_fraction);
+    f("occlusion_threshold",v.occlusion_threshold);
+    f("level_samples",v.level_samples);
+    f("min_area_fraction",v.min_area_fraction);
+    f("max_area_fraction",v.max_area_fraction);
+    f("min_depth_ratio",v.min_depth_ratio);
+    f("slit_depth_ratio",v.slit_depth_ratio);
+    f("min_confidence",v.min_confidence);
+    f("max_cavities",v.max_cavities);
+    f("min_chart_faces",v.min_chart_faces);
+}
+template<class F> void visit_fields(const CavityOptions& v, F&& f) {
+    f("enabled",v.enabled);
+    f("max_samples",v.max_samples);
+    f("rays_per_sample",v.rays_per_sample);
+    f("cone_half_angle_deg",v.cone_half_angle_deg);
+    f("reach_fraction",v.reach_fraction);
+    f("occlusion_threshold",v.occlusion_threshold);
+    f("level_samples",v.level_samples);
+    f("min_area_fraction",v.min_area_fraction);
+    f("max_area_fraction",v.max_area_fraction);
+    f("min_depth_ratio",v.min_depth_ratio);
+    f("slit_depth_ratio",v.slit_depth_ratio);
+    f("min_confidence",v.min_confidence);
+    f("max_cavities",v.max_cavities);
+    f("min_chart_faces",v.min_chart_faces);
+}
+template<class F> void visit_fields(ShellOptions& v, F&& f) {
+    f("enabled",v.enabled);
+    f("thin_ratio",v.thin_ratio);
+    f("max_candidates",v.max_candidates);
+    f("max_samples",v.max_samples);
+    f("min_correspondence",v.min_correspondence);
+    f("min_confidence",v.min_confidence);
+    f("speckle_fraction",v.speckle_fraction);
+    f("smoothing_passes",v.smoothing_passes);
+    f("min_faces",v.min_faces);
+}
+template<class F> void visit_fields(const ShellOptions& v, F&& f) {
+    f("enabled",v.enabled);
+    f("thin_ratio",v.thin_ratio);
+    f("max_candidates",v.max_candidates);
+    f("max_samples",v.max_samples);
+    f("min_correspondence",v.min_correspondence);
+    f("min_confidence",v.min_confidence);
+    f("speckle_fraction",v.speckle_fraction);
+    f("smoothing_passes",v.smoothing_passes);
+    f("min_faces",v.min_faces);
+}
+template<class F> void visit_fields(SymmetryOptions& v, F&& f) {
+    f("mode",v.mode);
+    f("on_conflict",v.on_conflict);
+    f("plane_normal",v.plane_normal);
+    f("plane_offset",v.plane_offset);
+    f("map_tolerance",v.map_tolerance);
+    f("geometry_tolerance",v.geometry_tolerance);
+    f("max_candidates",v.max_candidates);
+}
+template<class F> void visit_fields(const SymmetryOptions& v, F&& f) {
+    f("mode",v.mode);
+    f("on_conflict",v.on_conflict);
+    f("plane_normal",v.plane_normal);
+    f("plane_offset",v.plane_offset);
+    f("map_tolerance",v.map_tolerance);
+    f("geometry_tolerance",v.geometry_tolerance);
+    f("max_candidates",v.max_candidates);
+}
+template<class F> void visit_fields(ScaleOptions& v, F&& f) {
+    f("mode",v.mode);
+    f("reference_length",v.reference_length);
+    f("reference_area",v.reference_area);
+    f("corridor_radius",v.corridor_radius);
+    f("corridor_scale",v.corridor_scale);
+    f("max_steps",v.max_steps);
+}
+template<class F> void visit_fields(const ScaleOptions& v, F&& f) {
+    f("mode",v.mode);
+    f("reference_length",v.reference_length);
+    f("reference_area",v.reference_area);
+    f("corridor_radius",v.corridor_radius);
+    f("corridor_scale",v.corridor_scale);
+    f("max_steps",v.max_steps);
+}
+template<class F> void visit_fields(ReliefOptions& v, F&& f) {
+    f("enabled",v.enabled);
+}
+template<class F> void visit_fields(const ReliefOptions& v, F&& f) {
+    f("enabled",v.enabled);
+}
+template<class F> void visit_fields(SpurRemovalOptions& v, F&& f) {
+    f("enabled",v.enabled);
+}
+template<class F> void visit_fields(const SpurRemovalOptions& v, F&& f) {
+    f("enabled",v.enabled);
+}
+template<class F> void visit_fields(StrictRepairOptions& v, F&& f) {
+    f("enabled",v.enabled);
+}
+template<class F> void visit_fields(const StrictRepairOptions& v, F&& f) {
+    f("enabled",v.enabled);
+}
+template<class F> void visit_fields(ConstraintRepairOptions& v, F&& f) {
+    f("enabled",v.enabled);
+}
+template<class F> void visit_fields(const ConstraintRepairOptions& v, F&& f) {
+    f("enabled",v.enabled);
+}
+template<class F> void visit_fields(SearchOptions& v, F&& f) {
+    f("feature_candidates_per_chart",v.feature_candidates_per_chart);
+    f("feature_solves_per_chart",v.feature_solves_per_chart);
+    f("prune_dominated",v.prune_dominated);
+}
+template<class F> void visit_fields(const SearchOptions& v, F&& f) {
+    f("feature_candidates_per_chart",v.feature_candidates_per_chart);
+    f("feature_solves_per_chart",v.feature_solves_per_chart);
+    f("prune_dominated",v.prune_dominated);
+}
+template<class F> void visit_fields(BoundaryRefinementOptions& v, F&& f) {
+    f("enabled",v.enabled);
+}
+template<class F> void visit_fields(const BoundaryRefinementOptions& v, F&& f) {
+    f("enabled",v.enabled);
+}
+template<class F> void visit_fields(EnhancedOptions& v, F&& f) {
+    f("objective",v.objective);
+    f("preferences",v.preferences);
+    f("endpoint_slide",v.endpoint_slide);
+    f("regions",v.regions);
+    f("rings",v.rings);
+    f("cavities",v.cavities);
+    f("shells",v.shells);
+    f("symmetry",v.symmetry);
+    f("scale",v.scale);
+    f("relief",v.relief);
+    f("spur_removal",v.spur_removal);
+    f("strict_repair",v.strict_repair);
+    f("constraint_repair",v.constraint_repair);
+    f("search",v.search);
+    f("boundary_refinement",v.boundary_refinement);
+    f("max_candidates_per_chart",v.max_candidates_per_chart);
+    f("max_solves_per_chart",v.max_solves_per_chart);
+    f("pin_tolerance",v.pin_tolerance);
+    f("overlap_area_tolerance",v.overlap_area_tolerance);
+}
+template<class F> void visit_fields(const EndpointSlideOptions& v, F&& f) {
+    f("enabled",v.enabled);
+    f("max_slide_distance",v.max_slide_distance);
+    f("vertex_budget",v.vertex_budget);
+    f("w_turn",v.w_turn);
+    f("w_tangent",v.w_tangent);
+    f("w_slide",v.w_slide);
+}
+template<class F> void visit_fields(const EnhancedOptions& v, F&& f) {
+    f("objective",v.objective);
+    f("preferences",v.preferences);
+    f("endpoint_slide",v.endpoint_slide);
+    f("regions",v.regions);
+    f("rings",v.rings);
+    f("cavities",v.cavities);
+    f("shells",v.shells);
+    f("symmetry",v.symmetry);
+    f("scale",v.scale);
+    f("relief",v.relief);
+    f("spur_removal",v.spur_removal);
+    f("strict_repair",v.strict_repair);
+    f("constraint_repair",v.constraint_repair);
+    f("search",v.search);
+    f("boundary_refinement",v.boundary_refinement);
+    f("max_candidates_per_chart",v.max_candidates_per_chart);
+    f("max_solves_per_chart",v.max_solves_per_chart);
+    f("pin_tolerance",v.pin_tolerance);
+    f("overlap_area_tolerance",v.overlap_area_tolerance);
+}
+template<class F> void visit_fields(RepairOptions& v, F&& f) {
+    f("require_open_protected_cuts",v.require_open_protected_cuts);
+    f("minimum_relative_area",v.minimum_relative_area);
+    f("relax_faces_seconds",v.relax_faces_seconds);
+    f("region_recovery_seconds",v.region_recovery_seconds);
+    f("singleton_seconds",v.singleton_seconds);
+    f("join_seconds",v.join_seconds);
+    f("join_mode",v.join_mode);
+    f("host_proposal_seconds",v.host_proposal_seconds);
+    f("storage_precision",v.storage_precision);
+}
+template<class F> void visit_fields(const RepairOptions& v, F&& f) {
+    f("require_open_protected_cuts",v.require_open_protected_cuts);
+    f("minimum_relative_area",v.minimum_relative_area);
+    f("relax_faces_seconds",v.relax_faces_seconds);
+    f("region_recovery_seconds",v.region_recovery_seconds);
+    f("singleton_seconds",v.singleton_seconds);
+    f("join_seconds",v.join_seconds);
+    f("join_mode",v.join_mode);
+    f("host_proposal_seconds",v.host_proposal_seconds);
+    f("storage_precision",v.storage_precision);
+}
+template<class F> void visit_fields(PipelineOptions& v, F&& f) {
+    f("profile",v.profile);
+    f("target_islands",v.target_islands);
+    f("deadline_s",v.deadline_s);
+    f("refine_guard",v.refine_guard);
+    f("generate",v.generate);
+    f("refine_paths",v.refine_paths);
+    f("refine_passes",v.refine_passes);
+    f("refine_cycles",v.refine_cycles);
+    f("clean_contours",v.clean_contours);
+    f("uniform_density",v.uniform_density);
+    f("orient_islands",v.orient_islands);
+    f("layout",v.layout);
+    f("paths",v.paths);
+    f("boundary",v.boundary);
+    f("p95_growth",v.p95_growth);
+    f("max_growth",v.max_growth);
+    f("abs_anisotropy_p95",v.abs_anisotropy_p95);
+    f("abs_area_p95",v.abs_area_p95);
+    f("accept_partial",v.accept_partial);
+    f("gate",v.gate);
+    f("gate_max_faces",v.gate_max_faces);
+    f("gate_max_components",v.gate_max_components);
+    f("gate_min_main_fraction",v.gate_min_main_fraction);
+    f("gate_max_degenerate",v.gate_max_degenerate);
+    f("passthrough_fraction",v.passthrough_fraction);
+    f("repair_exempt_faces",v.repair_exempt_faces);
+    f("repair_exempt_fraction",v.repair_exempt_fraction);
+    f("fallback_density",v.fallback_density);
+    f("final_gate",v.final_gate);
+    f("final_gate_tolerance",v.final_gate_tolerance);
+    f("version",v.version);
+    f("policy",v.policy);
+    f("enhanced",v.enhanced);
+    f("solver",v.solver);
+    f("packing",v.packing);
+    f("host",v.host);
+    f("repair",v.repair);
+}
+template<class F> void visit_fields(const PipelineOptions& v, F&& f) {
+    f("profile",v.profile);
+    f("target_islands",v.target_islands);
+    f("deadline_s",v.deadline_s);
+    f("refine_guard",v.refine_guard);
+    f("generate",v.generate);
+    f("refine_paths",v.refine_paths);
+    f("refine_passes",v.refine_passes);
+    f("refine_cycles",v.refine_cycles);
+    f("clean_contours",v.clean_contours);
+    f("uniform_density",v.uniform_density);
+    f("orient_islands",v.orient_islands);
+    f("layout",v.layout);
+    f("paths",v.paths);
+    f("boundary",v.boundary);
+    f("p95_growth",v.p95_growth);
+    f("max_growth",v.max_growth);
+    f("abs_anisotropy_p95",v.abs_anisotropy_p95);
+    f("abs_area_p95",v.abs_area_p95);
+    f("accept_partial",v.accept_partial);
+    f("gate",v.gate);
+    f("gate_max_faces",v.gate_max_faces);
+    f("gate_max_components",v.gate_max_components);
+    f("gate_min_main_fraction",v.gate_min_main_fraction);
+    f("gate_max_degenerate",v.gate_max_degenerate);
+    f("passthrough_fraction",v.passthrough_fraction);
+    f("repair_exempt_faces",v.repair_exempt_faces);
+    f("repair_exempt_fraction",v.repair_exempt_fraction);
+    f("fallback_density",v.fallback_density);
+    f("final_gate",v.final_gate);
+    f("final_gate_tolerance",v.final_gate_tolerance);
+    f("version",v.version);
+    f("policy",v.policy);
+    f("enhanced",v.enhanced);
+    f("solver",v.solver);
+    f("packing",v.packing);
+    f("host",v.host);
+    f("repair",v.repair);
+}
+}

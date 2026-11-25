@@ -1,0 +1,748 @@
+{
+  "$id": "urn:cleanseams:host_request:1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "default": {
+    "identity": {
+      "chart_keys": [],
+      "geometry_revision": 0,
+      "request_id": 0,
+      "session_id": 0,
+      "state_revision": 0,
+      "version": 1
+    },
+    "kind": "solve",
+    "pack": null,
+    "region_proposal": null,
+    "solve": null
+  },
+  "description": "Structural wire contract; native validation also checks indices, lengths and cross-field invariants.",
+  "properties": {
+    "identity": {
+      "additionalProperties": false,
+      "default": {
+        "chart_keys": [],
+        "geometry_revision": 0,
+        "request_id": 0,
+        "session_id": 0,
+        "state_revision": 0,
+        "version": 1
+      },
+      "properties": {
+        "chart_keys": {
+          "default": [],
+          "items": {
+            "default": "",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "geometry_revision": {
+          "default": 0,
+          "maximum": 18446744073709551615,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "request_id": {
+          "default": 0,
+          "maximum": 18446744073709551615,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "session_id": {
+          "default": 0,
+          "maximum": 18446744073709551615,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "state_revision": {
+          "default": 0,
+          "maximum": 18446744073709551615,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "version": {
+          "default": 1,
+          "enum": [
+            1
+          ],
+          "maximum": 18446744073709551615,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "version",
+        "session_id",
+        "request_id",
+        "geometry_revision",
+        "state_revision",
+        "chart_keys"
+      ],
+      "type": "object"
+    },
+    "kind": {
+      "default": "solve",
+      "enum": [
+        "solve",
+        "pack",
+        "region_proposal"
+      ],
+      "type": "string"
+    },
+    "pack": {
+      "additionalProperties": false,
+      "default": null,
+      "properties": {
+        "backend": {
+          "default": "blender",
+          "enum": [
+            "blender"
+          ],
+          "type": "string"
+        },
+        "mesh": {
+          "additionalProperties": false,
+          "default": {
+            "corner_vertices": [],
+            "edge_vertices": [],
+            "face_offsets": [
+              0
+            ],
+            "geometry_fingerprint": "",
+            "host_edge_indices": [],
+            "host_loop_indices": [],
+            "positions": []
+          },
+          "properties": {
+            "corner_vertices": {
+              "default": [],
+              "items": {
+                "default": 0,
+                "maximum": 9223372036854775807,
+                "minimum": -9223372036854775808,
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            "edge_vertices": {
+              "default": [],
+              "items": {
+                "default": [
+                  0,
+                  0
+                ],
+                "items": {
+                  "default": 0,
+                  "maximum": 9223372036854775807,
+                  "minimum": -9223372036854775808,
+                  "type": "integer"
+                },
+                "maxItems": 2,
+                "minItems": 2,
+                "type": "array"
+              },
+              "type": "array"
+            },
+            "face_offsets": {
+              "default": [
+                0
+              ],
+              "items": {
+                "default": 0,
+                "maximum": 18446744073709551615,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            "geometry_fingerprint": {
+              "default": "",
+              "type": "string"
+            },
+            "host_edge_indices": {
+              "default": [],
+              "items": {
+                "default": 0,
+                "maximum": 9223372036854775807,
+                "minimum": -9223372036854775808,
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            "host_loop_indices": {
+              "default": [],
+              "items": {
+                "default": 0,
+                "maximum": 9223372036854775807,
+                "minimum": -9223372036854775808,
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            "positions": {
+              "default": [],
+              "items": {
+                "default": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "items": {
+                  "default": 0.0,
+                  "type": "number"
+                },
+                "maxItems": 3,
+                "minItems": 3,
+                "type": "array"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "positions",
+            "face_offsets",
+            "corner_vertices",
+            "edge_vertices",
+            "host_edge_indices",
+            "host_loop_indices",
+            "geometry_fingerprint"
+          ],
+          "type": "object"
+        },
+        "options": {
+          "additionalProperties": false,
+          "default": {
+            "allow_mirroring": false,
+            "border_px": 2.0,
+            "equalize_density": true,
+            "keep_orientation": true,
+            "padding_px": 4.0,
+            "texture_height": 2048,
+            "texture_width": 2048,
+            "threads": 1,
+            "tiles": [
+              1001
+            ],
+            "time_budget": 0.0,
+            "trials": 8
+          },
+          "properties": {
+            "allow_mirroring": {
+              "default": false,
+              "type": "boolean"
+            },
+            "border_px": {
+              "default": 2.0,
+              "minimum": 0,
+              "type": "number"
+            },
+            "equalize_density": {
+              "default": true,
+              "type": "boolean"
+            },
+            "keep_orientation": {
+              "default": true,
+              "type": "boolean"
+            },
+            "padding_px": {
+              "default": 4.0,
+              "minimum": 0,
+              "type": "number"
+            },
+            "texture_height": {
+              "default": 2048,
+              "maximum": 9223372036854775807,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "texture_width": {
+              "default": 2048,
+              "maximum": 9223372036854775807,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "threads": {
+              "default": 1,
+              "maximum": 9223372036854775807,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "tiles": {
+              "default": [
+                1001
+              ],
+              "items": {
+                "default": 0,
+                "maximum": 9223372036854775807,
+                "minimum": 1001,
+                "type": "integer"
+              },
+              "minItems": 1,
+              "type": "array",
+              "uniqueItems": true
+            },
+            "time_budget": {
+              "default": 0.0,
+              "minimum": 0,
+              "type": "number"
+            },
+            "trials": {
+              "default": 8,
+              "maximum": 9223372036854775807,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "texture_width",
+            "texture_height",
+            "padding_px",
+            "border_px",
+            "tiles",
+            "keep_orientation",
+            "allow_mirroring",
+            "equalize_density",
+            "time_budget",
+            "trials",
+            "threads"
+          ],
+          "type": "object"
+        },
+        "payload": {
+          "default": {}
+        },
+        "pins": {
+          "default": [],
+          "items": {
+            "additionalProperties": false,
+            "default": {
+              "corner": 0,
+              "uv": [
+                0.0,
+                0.0
+              ]
+            },
+            "properties": {
+              "corner": {
+                "default": 0,
+                "maximum": 9223372036854775807,
+                "minimum": -9223372036854775808,
+                "type": "integer"
+              },
+              "uv": {
+                "default": [
+                  0.0,
+                  0.0
+                ],
+                "items": {
+                  "default": 0.0,
+                  "type": "number"
+                },
+                "maxItems": 2,
+                "minItems": 2,
+                "type": "array"
+              }
+            },
+            "required": [
+              "corner",
+              "uv"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "uv": {
+          "default": [],
+          "items": {
+            "default": [
+              0.0,
+              0.0
+            ],
+            "items": {
+              "default": 0.0,
+              "type": "number"
+            },
+            "maxItems": 2,
+            "minItems": 2,
+            "type": "array"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "mesh",
+        "uv",
+        "pins",
+        "options",
+        "backend",
+        "payload"
+      ],
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "region_proposal": {
+      "additionalProperties": false,
+      "default": null,
+      "properties": {
+        "mesh": {
+          "additionalProperties": false,
+          "default": {
+            "corner_vertices": [],
+            "edge_vertices": [],
+            "face_offsets": [
+              0
+            ],
+            "geometry_fingerprint": "",
+            "host_edge_indices": [],
+            "host_loop_indices": [],
+            "positions": []
+          },
+          "properties": {
+            "corner_vertices": {
+              "default": [],
+              "items": {
+                "default": 0,
+                "maximum": 9223372036854775807,
+                "minimum": -9223372036854775808,
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            "edge_vertices": {
+              "default": [],
+              "items": {
+                "default": [
+                  0,
+                  0
+                ],
+                "items": {
+                  "default": 0,
+                  "maximum": 9223372036854775807,
+                  "minimum": -9223372036854775808,
+                  "type": "integer"
+                },
+                "maxItems": 2,
+                "minItems": 2,
+                "type": "array"
+              },
+              "type": "array"
+            },
+            "face_offsets": {
+              "default": [
+                0
+              ],
+              "items": {
+                "default": 0,
+                "maximum": 18446744073709551615,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            "geometry_fingerprint": {
+              "default": "",
+              "type": "string"
+            },
+            "host_edge_indices": {
+              "default": [],
+              "items": {
+                "default": 0,
+                "maximum": 9223372036854775807,
+                "minimum": -9223372036854775808,
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            "host_loop_indices": {
+              "default": [],
+              "items": {
+                "default": 0,
+                "maximum": 9223372036854775807,
+                "minimum": -9223372036854775808,
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            "positions": {
+              "default": [],
+              "items": {
+                "default": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "items": {
+                  "default": 0.0,
+                  "type": "number"
+                },
+                "maxItems": 3,
+                "minItems": 3,
+                "type": "array"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "positions",
+            "face_offsets",
+            "corner_vertices",
+            "edge_vertices",
+            "host_edge_indices",
+            "host_loop_indices",
+            "geometry_fingerprint"
+          ],
+          "type": "object"
+        },
+        "scratch_to_original_corner": {
+          "default": [],
+          "items": {
+            "default": 0,
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "type": "integer"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "mesh",
+        "scratch_to_original_corner"
+      ],
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "solve": {
+      "additionalProperties": false,
+      "default": null,
+      "properties": {
+        "initial_uv": {
+          "default": null,
+          "items": {
+            "default": [
+              0.0,
+              0.0
+            ],
+            "items": {
+              "default": 0.0,
+              "type": "number"
+            },
+            "maxItems": 2,
+            "minItems": 2,
+            "type": "array"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "iterations": {
+          "default": 10,
+          "maximum": 18446744073709551615,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "mesh": {
+          "additionalProperties": false,
+          "default": {
+            "corner_vertices": [],
+            "edge_vertices": [],
+            "face_offsets": [
+              0
+            ],
+            "geometry_fingerprint": "",
+            "host_edge_indices": [],
+            "host_loop_indices": [],
+            "positions": []
+          },
+          "properties": {
+            "corner_vertices": {
+              "default": [],
+              "items": {
+                "default": 0,
+                "maximum": 9223372036854775807,
+                "minimum": -9223372036854775808,
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            "edge_vertices": {
+              "default": [],
+              "items": {
+                "default": [
+                  0,
+                  0
+                ],
+                "items": {
+                  "default": 0,
+                  "maximum": 9223372036854775807,
+                  "minimum": -9223372036854775808,
+                  "type": "integer"
+                },
+                "maxItems": 2,
+                "minItems": 2,
+                "type": "array"
+              },
+              "type": "array"
+            },
+            "face_offsets": {
+              "default": [
+                0
+              ],
+              "items": {
+                "default": 0,
+                "maximum": 18446744073709551615,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            "geometry_fingerprint": {
+              "default": "",
+              "type": "string"
+            },
+            "host_edge_indices": {
+              "default": [],
+              "items": {
+                "default": 0,
+                "maximum": 9223372036854775807,
+                "minimum": -9223372036854775808,
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            "host_loop_indices": {
+              "default": [],
+              "items": {
+                "default": 0,
+                "maximum": 9223372036854775807,
+                "minimum": -9223372036854775808,
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            "positions": {
+              "default": [],
+              "items": {
+                "default": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "items": {
+                  "default": 0.0,
+                  "type": "number"
+                },
+                "maxItems": 3,
+                "minItems": 3,
+                "type": "array"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "positions",
+            "face_offsets",
+            "corner_vertices",
+            "edge_vertices",
+            "host_edge_indices",
+            "host_loop_indices",
+            "geometry_fingerprint"
+          ],
+          "type": "object"
+        },
+        "method": {
+          "default": "MINIMUM_STRETCH",
+          "enum": [
+            "MINIMUM_STRETCH",
+            "ANGLE_BASED",
+            "CONFORMAL"
+          ],
+          "type": "string"
+        },
+        "pins": {
+          "default": [],
+          "items": {
+            "additionalProperties": false,
+            "default": {
+              "corner": 0,
+              "uv": [
+                0.0,
+                0.0
+              ]
+            },
+            "properties": {
+              "corner": {
+                "default": 0,
+                "maximum": 9223372036854775807,
+                "minimum": -9223372036854775808,
+                "type": "integer"
+              },
+              "uv": {
+                "default": [
+                  0.0,
+                  0.0
+                ],
+                "items": {
+                  "default": 0.0,
+                  "type": "number"
+                },
+                "maxItems": 2,
+                "minItems": 2,
+                "type": "array"
+              }
+            },
+            "required": [
+              "corner",
+              "uv"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "required_capabilities": {
+          "default": [],
+          "items": {
+            "default": "",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "scratch_to_original_corner": {
+          "default": [],
+          "items": {
+            "default": 0,
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "type": "integer"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "mesh",
+        "scratch_to_original_corner",
+        "initial_uv",
+        "pins",
+        "method",
+        "iterations",
+        "required_capabilities"
+      ],
+      "type": [
+        "object",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "identity",
+    "kind",
+    "solve",
+    "pack"
+  ],
+  "type": "object"
+}

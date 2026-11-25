@@ -1,0 +1,219 @@
+{
+  "$id": "urn:cleanseams:host_response:1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "default": {
+    "capabilities": [],
+    "elapsed_s": 0.0,
+    "error": null,
+    "identity": {
+      "chart_keys": [],
+      "geometry_revision": 0,
+      "request_id": 0,
+      "session_id": 0,
+      "state_revision": 0,
+      "version": 1
+    },
+    "iterations": 0,
+    "kind": "solve",
+    "method": "MINIMUM_STRETCH",
+    "packing_result": {},
+    "success": false,
+    "uv": null,
+    "warnings": []
+  },
+  "description": "Structural wire contract; native validation also checks indices, lengths and cross-field invariants.",
+  "properties": {
+    "capabilities": {
+      "default": [],
+      "items": {
+        "default": "",
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "elapsed_s": {
+      "default": 0.0,
+      "minimum": 0.0,
+      "type": "number"
+    },
+    "error": {
+      "additionalProperties": false,
+      "default": null,
+      "properties": {
+        "code": {
+          "default": "host_failure",
+          "enum": [
+            "invalid_option",
+            "invalid_input",
+            "unsupported_version",
+            "constraint_conflict",
+            "unsupported_topology",
+            "numerical_failure",
+            "stale_state",
+            "host_failure",
+            "cancelled",
+            "memory_limit",
+            "io_error"
+          ],
+          "type": "string"
+        },
+        "field": {
+          "default": "",
+          "type": "string"
+        },
+        "message": {
+          "default": "",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "field",
+        "message"
+      ],
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "identity": {
+      "additionalProperties": false,
+      "default": {
+        "chart_keys": [],
+        "geometry_revision": 0,
+        "request_id": 0,
+        "session_id": 0,
+        "state_revision": 0,
+        "version": 1
+      },
+      "properties": {
+        "chart_keys": {
+          "default": [],
+          "items": {
+            "default": "",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "geometry_revision": {
+          "default": 0,
+          "maximum": 18446744073709551615,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "request_id": {
+          "default": 0,
+          "maximum": 18446744073709551615,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "session_id": {
+          "default": 0,
+          "maximum": 18446744073709551615,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "state_revision": {
+          "default": 0,
+          "maximum": 18446744073709551615,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "version": {
+          "default": 1,
+          "enum": [
+            1
+          ],
+          "maximum": 18446744073709551615,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "version",
+        "session_id",
+        "request_id",
+        "geometry_revision",
+        "state_revision",
+        "chart_keys"
+      ],
+      "type": "object"
+    },
+    "iterations": {
+      "default": 0,
+      "maximum": 18446744073709551615,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "kind": {
+      "default": "solve",
+      "enum": [
+        "solve",
+        "pack",
+        "region_proposal"
+      ],
+      "type": "string"
+    },
+    "method": {
+      "default": "MINIMUM_STRETCH",
+      "enum": [
+        "MINIMUM_STRETCH",
+        "ANGLE_BASED",
+        "CONFORMAL",
+        "SMART_PROJECT",
+        "blender"
+      ],
+      "type": "string"
+    },
+    "packing_result": {
+      "default": {}
+    },
+    "success": {
+      "default": false,
+      "type": "boolean"
+    },
+    "uv": {
+      "default": null,
+      "items": {
+        "default": [
+          0.0,
+          0.0
+        ],
+        "items": {
+          "default": 0.0,
+          "type": "number"
+        },
+        "maxItems": 2,
+        "minItems": 2,
+        "type": "array"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "warnings": {
+      "default": [],
+      "items": {
+        "default": "",
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "identity",
+    "kind",
+    "success",
+    "uv",
+    "method",
+    "iterations",
+    "capabilities",
+    "warnings",
+    "elapsed_s",
+    "error",
+    "packing_result"
+  ],
+  "type": "object"
+}

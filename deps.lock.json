@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "dependencies": [
+    {
+      "name": "eigen",
+      "version": "3.4.0",
+      "tag": "3.4.0",
+      "repository": "https://gitlab.com/libeigen/eigen.git",
+      "commit": "3147391d946bb4b6c68edd901f2add6ac1f31f8c",
+      "url": "https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz",
+      "sha256": "8586084f71f9bde545ee7fa6d00288b264a2b7ac3607b974e54d13e7162c1c72",
+      "license": "MPL-2.0"
+    },
+    {
+      "name": "superlu",
+      "version": "7.0.0",
+      "tag": "v7.0.0",
+      "repository": "https://github.com/xiaoyeli/superlu.git",
+      "commit": "9c2665629b1fcc003726c87118dd1ccb895d94f8",
+      "url": "https://codeload.github.com/xiaoyeli/superlu/tar.gz/refs/tags/v7.0.0",
+      "sha256": "d7b91d4e0bb52644ca74c1a4dd466a694ddf1244a7bbf93cb453e8ca1f6527eb",
+      "license": "BSD-3-Clause"
+    },
+    {
+      "name": "pybind11",
+      "version": "3.0.1",
+      "tag": "v3.0.1",
+      "repository": "https://github.com/pybind/pybind11.git",
+      "commit": "f5fbe867d2d26e4a0a9177a51f6e568868ad3dc8",
+      "url": "https://codeload.github.com/pybind/pybind11/tar.gz/refs/tags/v3.0.1",
+      "sha256": "741633da746b7c738bb71f1854f957b9da660bcd2dce68d71949037f0969d0ca",
+      "license": "BSD-3-Clause"
+    },
+    {
+      "name": "json",
+      "version": "3.12.0",
+      "tag": "v3.12.0",
+      "repository": "https://github.com/nlohmann/json.git",
+      "commit": "55f93686c01528224f448c19128836e7df245f72",
+      "url": "https://codeload.github.com/nlohmann/json/tar.gz/refs/tags/v3.12.0",
+      "sha256": "4b92eb0c06d10683f7447ce9406cb97cd4b453be18d7279320f7b2f025c10187",
+      "license": "MIT"
+    }
+  ]
+}

@@ -1,0 +1,2884 @@
+{
+  "$id": "urn:cleanseams:case:1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Structural wire contract; native validation also checks indices, lengths and cross-field invariants.",
+  "properties": {
+    "anchors": {
+      "default": [],
+      "items": {
+        "default": 0,
+        "maximum": 9223372036854775807,
+        "minimum": -9223372036854775808,
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "cache_trials": {},
+    "constraints": {
+      "additionalProperties": false,
+      "default": {
+        "allow_points": [],
+        "attributes": [],
+        "avoid_points": [],
+        "forbidden_edges": [],
+        "required_edges": []
+      },
+      "properties": {
+        "allow_points": {
+          "default": [],
+          "items": {
+            "default": 0.0,
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "attributes": {
+          "default": [],
+          "items": {
+            "additionalProperties": false,
+            "default": {
+              "data_type": "",
+              "domain": "",
+              "name": "",
+              "values": []
+            },
+            "properties": {
+              "data_type": {
+                "default": "",
+                "type": "string"
+              },
+              "domain": {
+                "default": "",
+                "type": "string"
+              },
+              "name": {
+                "default": "",
+                "type": "string"
+              },
+              "values": {
+                "default": [],
+                "items": {
+                  "default": 0.0,
+                  "type": "number"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "name",
+              "domain",
+              "data_type",
+              "values"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "avoid_points": {
+          "default": [],
+          "items": {
+            "default": 0.0,
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "forbidden_edges": {
+          "default": [],
+          "items": {
+            "default": 0,
+            "maximum": 255,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "required_edges": {
+          "default": [],
+          "items": {
+            "default": 0,
+            "maximum": 255,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "required_edges",
+        "forbidden_edges",
+        "allow_points",
+        "avoid_points",
+        "attributes"
+      ],
+      "type": "object"
+    },
+    "coordinate_space": {
+      "default": "object",
+      "enum": [
+        "object"
+      ],
+      "type": "string"
+    },
+    "corner_vertices": {
+      "oneOf": [
+        {
+          "default": [],
+          "items": {
+            "default": 0,
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "byte_length": {
+              "maximum": 18446744073709551615,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "byte_offset": {
+              "maximum": 18446744073709551615,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "dtype": {
+              "enum": [
+                "int64-le"
+              ],
+              "type": "string"
+            },
+            "file": {
+              "description": "Relative path; T18 additionally rejects absolute paths, traversal and symlink escape.",
+              "minLength": 1,
+              "type": "string"
+            },
+            "sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "shape": {
+              "items": {
+                "maximum": 18446744073709551615,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "file",
+            "dtype",
+            "shape",
+            "byte_offset",
+            "byte_length",
+            "sha256"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "face_offsets": {
+      "oneOf": [
+        {
+          "default": [
+            0
+          ],
+          "items": {
+            "default": 0,
+            "maximum": 18446744073709551615,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "byte_length": {
+              "maximum": 18446744073709551615,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "byte_offset": {
+              "maximum": 18446744073709551615,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "dtype": {
+              "enum": [
+                "uint64-le"
+              ],
+              "type": "string"
+            },
+            "file": {
+              "description": "Relative path; T18 additionally rejects absolute paths, traversal and symlink escape.",
+              "minLength": 1,
+              "type": "string"
+            },
+            "sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "shape": {
+              "items": {
+                "maximum": 18446744073709551615,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "file",
+            "dtype",
+            "shape",
+            "byte_offset",
+            "byte_length",
+            "sha256"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "family": {
+      "type": "string"
+    },
+    "fields": {},
+    "geometry_fingerprint": {
+      "default": "",
+      "type": "string"
+    },
+    "geometry_revision": {
+      "default": 0,
+      "maximum": 18446744073709551615,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "host_actions": {},
+    "host_edge_indices": {
+      "oneOf": [
+        {
+          "default": [],
+          "items": {
+            "default": 0,
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "byte_length": {
+              "maximum": 18446744073709551615,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "byte_offset": {
+              "maximum": 18446744073709551615,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "dtype": {
+              "enum": [
+                "int64-le"
+              ],
+              "type": "string"
+            },
+            "file": {
+              "description": "Relative path; T18 additionally rejects absolute paths, traversal and symlink escape.",
+              "minLength": 1,
+              "type": "string"
+            },
+            "sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "shape": {
+              "items": {
+                "maximum": 18446744073709551615,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "file",
+            "dtype",
+            "shape",
+            "byte_offset",
+            "byte_length",
+            "sha256"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "host_edge_vertices": {
+      "oneOf": [
+        {
+          "default": [],
+          "items": {
+            "default": [
+              0,
+              0
+            ],
+            "items": {
+              "default": 0,
+              "maximum": 9223372036854775807,
+              "minimum": -9223372036854775808,
+              "type": "integer"
+            },
+            "maxItems": 2,
+            "minItems": 2,
+            "type": "array"
+          },
+          "type": "array"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "byte_length": {
+              "maximum": 18446744073709551615,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "byte_offset": {
+              "maximum": 18446744073709551615,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "dtype": {
+              "enum": [
+                "int64-le"
+              ],
+              "type": "string"
+            },
+            "file": {
+              "description": "Relative path; T18 additionally rejects absolute paths, traversal and symlink escape.",
+              "minLength": 1,
+              "type": "string"
+            },
+            "sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "shape": {
+              "items": {
+                "maximum": 18446744073709551615,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "file",
+            "dtype",
+            "shape",
+            "byte_offset",
+            "byte_length",
+            "sha256"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "host_loop_indices": {
+      "oneOf": [
+        {
+          "default": [],
+          "items": {
+            "default": 0,
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "byte_length": {
+              "maximum": 18446744073709551615,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "byte_offset": {
+              "maximum": 18446744073709551615,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "dtype": {
+              "enum": [
+                "int64-le"
+              ],
+              "type": "string"
+            },
+            "file": {
+              "description": "Relative path; T18 additionally rejects absolute paths, traversal and symlink escape.",
+              "minLength": 1,
+              "type": "string"
+            },
+            "sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "shape": {
+              "items": {
+                "maximum": 18446744073709551615,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "file",
+            "dtype",
+            "shape",
+            "byte_offset",
+            "byte_length",
+            "sha256"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "host_setup": {},
+    "id": {
+      "type": "string"
+    },
+    "lock_mask": {
+      "oneOf": [
+        {
+          "default": [],
+          "items": {
+            "default": 0,
+            "maximum": 255,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "byte_length": {
+              "maximum": 18446744073709551615,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "byte_offset": {
+              "maximum": 18446744073709551615,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "dtype": {
+              "enum": [
+                "uint8"
+              ],
+              "type": "string"
+            },
+            "file": {
+              "description": "Relative path; T18 additionally rejects absolute paths, traversal and symlink escape.",
+              "minLength": 1,
+              "type": "string"
+            },
+            "sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "shape": {
+              "items": {
+                "maximum": 18446744073709551615,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "file",
+            "dtype",
+            "shape",
+            "byte_offset",
+            "byte_length",
+            "sha256"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "locked_edges": {
+      "default": [],
+      "items": {
+        "default": [
+          0,
+          0
+        ],
+        "items": {
+          "default": 0,
+          "maximum": 9223372036854775807,
+          "minimum": -9223372036854775808,
+          "type": "integer"
+        },
+        "maxItems": 2,
+        "minItems": 2,
+        "type": "array"
+      },
+      "type": "array"
+    },
+    "object_to_world": {
+      "default": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "items": {
+        "default": 0.0,
+        "type": "number"
+      },
+      "maxItems": 16,
+      "minItems": 16,
+      "type": "array"
+    },
+    "operation": {
+      "default": "pipeline",
+      "enum": [
+        "pipeline",
+        "postprocess_layout"
+      ],
+      "type": "string"
+    },
+    "options": {
+      "additionalProperties": false,
+      "default": {
+        "abs_anisotropy_p95": 2.0,
+        "abs_area_p95": 2.5,
+        "accept_partial": true,
+        "boundary": {
+          "abs_anisotropy_p95": 2.0,
+          "abs_area_p95": 2.5,
+          "arap_iterations": 8,
+          "corner_angle": 60.0,
+          "intensities": [
+            1.0,
+            0.5,
+            0.25,
+            0.125
+          ],
+          "max_displacement": 1.5,
+          "max_growth": 1.1,
+          "min_closed_anchors": 4,
+          "mode": "auto",
+          "p95_growth": 1.05,
+          "smooth_radius": 3.0,
+          "straight_angle": 150.0,
+          "straight_tolerance": 1.5
+        },
+        "clean_contours": true,
+        "deadline_s": null,
+        "enhanced": {
+          "boundary_refinement": {
+            "enabled": true
+          },
+          "cavities": {
+            "cone_half_angle_deg": 75.0,
+            "enabled": true,
+            "level_samples": 16,
+            "max_area_fraction": 0.3,
+            "max_cavities": 4,
+            "max_samples": 20000,
+            "min_area_fraction": 0.01,
+            "min_chart_faces": 16,
+            "min_confidence": 0.25,
+            "min_depth_ratio": 0.2,
+            "occlusion_threshold": 0.25,
+            "rays_per_sample": 8,
+            "reach_fraction": 0.08,
+            "slit_depth_ratio": 0.35
+          },
+          "constraint_repair": {
+            "enabled": true
+          },
+          "endpoint_slide": {
+            "enabled": true,
+            "max_slide_distance": 0.0,
+            "vertex_budget": 20000,
+            "w_slide": 0.25,
+            "w_tangent": 0.5,
+            "w_turn": 0.5
+          },
+          "max_candidates_per_chart": 8,
+          "max_solves_per_chart": 24,
+          "objective": {
+            "chart_count_weight": 0.01,
+            "significance": {
+              "practical_floor": 0.004
+            },
+            "tie_band": 1e-09,
+            "version": "seam_objective.v2",
+            "w_exposure": 2.0,
+            "w_fragment": 0.1,
+            "w_length": 1.0,
+            "w_turn": 0.05
+          },
+          "overlap_area_tolerance": 1e-10,
+          "pin_tolerance": 1e-09,
+          "preferences": {
+            "allow_attribute": "cleanseams_allow",
+            "avoid_attribute": "cleanseams_avoid",
+            "forbidden_attribute": "cleanseams_forbidden",
+            "required_attribute": "cleanseams_required",
+            "w_allow": 4.0,
+            "w_avoid": 4.0,
+            "w_crease": 1.0,
+            "w_exposure": 2.0,
+            "w_view": 2.0
+          },
+          "regions": {
+            "enabled": false,
+            "keep_feature_seams": true,
+            "lloyd_steps": 3,
+            "max_targets": 4,
+            "w_normal": 4.0,
+            "w_preference": 4.0
+          },
+          "relief": {
+            "enabled": true
+          },
+          "rings": {
+            "enabled": true,
+            "high_quantile": 0.9,
+            "low_quantile": 0.15,
+            "max_candidates": 4,
+            "max_charts": 4,
+            "min_confidence": 0.15,
+            "section_samples": 12
+          },
+          "scale": {
+            "corridor_radius": 0.0,
+            "corridor_scale": 0.0,
+            "max_steps": 64,
+            "mode": "physical",
+            "reference_area": 0.0,
+            "reference_length": 0.0
+          },
+          "search": {
+            "feature_candidates_per_chart": 4,
+            "feature_solves_per_chart": 12,
+            "prune_dominated": true
+          },
+          "shells": {
+            "enabled": true,
+            "max_candidates": 3,
+            "max_samples": 20000,
+            "min_confidence": 0.5,
+            "min_correspondence": 0.7,
+            "min_faces": 16,
+            "smoothing_passes": 3,
+            "speckle_fraction": 0.03,
+            "thin_ratio": 0.15
+          },
+          "spur_removal": {
+            "enabled": true
+          },
+          "strict_repair": {
+            "enabled": true
+          },
+          "symmetry": {
+            "geometry_tolerance": 1e-06,
+            "map_tolerance": 0.003,
+            "max_candidates": 3,
+            "mode": "asymmetric",
+            "on_conflict": "reject_pair",
+            "plane_normal": null,
+            "plane_offset": 0.0
+          }
+        },
+        "fallback_density": 0.01,
+        "final_gate": true,
+        "final_gate_tolerance": 1.05,
+        "gate": true,
+        "gate_max_components": 200,
+        "gate_max_degenerate": 0.2,
+        "gate_max_faces": 1500000,
+        "gate_min_main_fraction": 0.3,
+        "generate": true,
+        "host": {
+          "last_report": "",
+          "last_status": "",
+          "pack_after": "none",
+          "protect_existing": true,
+          "show_advanced": false
+        },
+        "layout": {
+          "absorb_relax": 2.0,
+          "arap_iterations": 6,
+          "arc_moves": true,
+          "evaluate_true_distortion": true,
+          "exposure_K": 64,
+          "exposure_weight": 1.0,
+          "feature_angle": 60.0,
+          "feature_lock_fraction": 0.5,
+          "feature_nms_ratio": 0.6,
+          "feature_scale": 2,
+          "hide_dir": null,
+          "isoperimetric_min_faces": 40,
+          "lock_features": false,
+          "max_anisotropy_max": 25.0,
+          "max_anisotropy_p95": 1.6,
+          "max_anisotropy_p99": 4.0,
+          "max_area_p95": 1.8,
+          "max_defect": null,
+          "max_extend": 8,
+          "max_faces_fraction": 1.0,
+          "max_isoperimetric_growth": 1.1,
+          "max_merge_edges": 0,
+          "max_patches": 4000,
+          "max_rounds": 60,
+          "max_split_passes": 6,
+          "min_feature_chain": 6,
+          "min_fusion": 0.15,
+          "min_island_faces": 8,
+          "min_island_fraction": 0.002,
+          "prefer_features": false,
+          "priority": "compact",
+          "relaxed_motorcycles": false,
+          "revolution_residual": 0.04,
+          "seed_density": 400,
+          "seeding": "auto",
+          "segment_iterations": 3,
+          "solver": "arap",
+          "split_min_faces": 40,
+          "spur_removal": true,
+          "strict_budget": false,
+          "strip_isoperimetric": 12.0,
+          "strip_max_width": 3,
+          "use_exposure": true
+        },
+        "max_growth": 1.1,
+        "orient_islands": true,
+        "p95_growth": 1.05,
+        "packing": {
+          "allow_mirroring": false,
+          "border_px": 2.0,
+          "equalize_density": true,
+          "keep_orientation": true,
+          "padding_px": 4.0,
+          "texture_height": 2048,
+          "texture_width": 2048,
+          "threads": 1,
+          "tiles": [
+            1001
+          ],
+          "time_budget": 0.0,
+          "trials": 8
+        },
+        "passthrough_fraction": 0.001,
+        "paths": {
+          "anchor_tangent_weight": 0.5,
+          "corridor_max_rings": 4,
+          "corridor_rings": 2,
+          "require_budget": false,
+          "require_improvement": true,
+          "variants": [
+            [
+              4.0,
+              2.0,
+              3.0
+            ],
+            [
+              2.0,
+              4.0,
+              3.0
+            ],
+            [
+              6.0,
+              2.0,
+              1.5
+            ],
+            [
+              4.0,
+              2.0,
+              0.5
+            ]
+          ],
+          "w_convex": 0.5,
+          "w_drift": 3.0,
+          "w_exposure": 0.5,
+          "w_flow": 2.0,
+          "w_turn": 4.0
+        },
+        "policy": "native_baseline",
+        "profile": "custom",
+        "refine_cycles": true,
+        "refine_guard": true,
+        "refine_passes": 3,
+        "refine_paths": true,
+        "repair": {
+          "host_proposal_seconds": 0.0,
+          "join_mode": "small",
+          "join_seconds": 0.0,
+          "minimum_relative_area": 0.0,
+          "region_recovery_seconds": 0.0,
+          "relax_faces_seconds": 0.0,
+          "require_open_protected_cuts": false,
+          "singleton_seconds": 0.0,
+          "storage_precision": "float64"
+        },
+        "repair_exempt_faces": 3,
+        "repair_exempt_fraction": 0.01,
+        "solver": {
+          "backend": "superlu",
+          "iterations": 10,
+          "method": "arap"
+        },
+        "target_islands": null,
+        "uniform_density": true,
+        "version": 1
+      },
+      "properties": {
+        "abs_anisotropy_p95": {
+          "default": 2.0,
+          "type": "number"
+        },
+        "abs_area_p95": {
+          "default": 2.5,
+          "type": "number"
+        },
+        "accept_partial": {
+          "default": true,
+          "type": "boolean"
+        },
+        "boundary": {
+          "additionalProperties": false,
+          "default": {
+            "abs_anisotropy_p95": 2.0,
+            "abs_area_p95": 2.5,
+            "arap_iterations": 8,
+            "corner_angle": 60.0,
+            "intensities": [
+              1.0,
+              0.5,
+              0.25,
+              0.125
+            ],
+            "max_displacement": 1.5,
+            "max_growth": 1.1,
+            "min_closed_anchors": 4,
+            "mode": "auto",
+            "p95_growth": 1.05,
+            "smooth_radius": 3.0,
+            "straight_angle": 150.0,
+            "straight_tolerance": 1.5
+          },
+          "properties": {
+            "abs_anisotropy_p95": {
+              "default": 2.0,
+              "type": "number"
+            },
+            "abs_area_p95": {
+              "default": 2.5,
+              "type": "number"
+            },
+            "arap_iterations": {
+              "default": 8,
+              "maximum": 9223372036854775807,
+              "minimum": -9223372036854775808,
+              "type": "integer"
+            },
+            "corner_angle": {
+              "default": 60.0,
+              "type": "number"
+            },
+            "intensities": {
+              "default": [
+                1.0,
+                0.5,
+                0.25,
+                0.125
+              ],
+              "items": {
+                "default": 0.0,
+                "type": "number"
+              },
+              "type": "array"
+            },
+            "max_displacement": {
+              "default": 1.5,
+              "minimum": 0,
+              "type": "number"
+            },
+            "max_growth": {
+              "default": 1.1,
+              "type": "number"
+            },
+            "min_closed_anchors": {
+              "default": 4,
+              "maximum": 9223372036854775807,
+              "minimum": -9223372036854775808,
+              "type": "integer"
+            },
+            "mode": {
+              "default": "auto",
+              "description": "auto, panels, or anything else to smooth every arc (source clean_chart)",
+              "type": "string"
+            },
+            "p95_growth": {
+              "default": 1.05,
+              "type": "number"
+            },
+            "smooth_radius": {
+              "default": 3.0,
+              "type": "number"
+            },
+            "straight_angle": {
+              "default": 150.0,
+              "type": "number"
+            },
+            "straight_tolerance": {
+              "default": 1.5,
+              "type": "number"
+            }
+          },
+          "type": "object"
+        },
+        "clean_contours": {
+          "default": true,
+          "type": "boolean"
+        },
+        "deadline_s": {
+          "default": null,
+          "minimum": 0,
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "enhanced": {
+          "additionalProperties": false,
+          "default": {
+            "boundary_refinement": {
+              "enabled": true
+            },
+            "cavities": {
+              "cone_half_angle_deg": 75.0,
+              "enabled": true,
+              "level_samples": 16,
+              "max_area_fraction": 0.3,
+              "max_cavities": 4,
+              "max_samples": 20000,
+              "min_area_fraction": 0.01,
+              "min_chart_faces": 16,
+              "min_confidence": 0.25,
+              "min_depth_ratio": 0.2,
+              "occlusion_threshold": 0.25,
+              "rays_per_sample": 8,
+              "reach_fraction": 0.08,
+              "slit_depth_ratio": 0.35
+            },
+            "constraint_repair": {
+              "enabled": true
+            },
+            "endpoint_slide": {
+              "enabled": true,
+              "max_slide_distance": 0.0,
+              "vertex_budget": 20000,
+              "w_slide": 0.25,
+              "w_tangent": 0.5,
+              "w_turn": 0.5
+            },
+            "max_candidates_per_chart": 8,
+            "max_solves_per_chart": 24,
+            "objective": {
+              "chart_count_weight": 0.01,
+              "significance": {
+                "practical_floor": 0.004
+              },
+              "tie_band": 1e-09,
+              "version": "seam_objective.v2",
+              "w_exposure": 2.0,
+              "w_fragment": 0.1,
+              "w_length": 1.0,
+              "w_turn": 0.05
+            },
+            "overlap_area_tolerance": 1e-10,
+            "pin_tolerance": 1e-09,
+            "preferences": {
+              "allow_attribute": "cleanseams_allow",
+              "avoid_attribute": "cleanseams_avoid",
+              "forbidden_attribute": "cleanseams_forbidden",
+              "required_attribute": "cleanseams_required",
+              "w_allow": 4.0,
+              "w_avoid": 4.0,
+              "w_crease": 1.0,
+              "w_exposure": 2.0,
+              "w_view": 2.0
+            },
+            "regions": {
+              "enabled": false,
+              "keep_feature_seams": true,
+              "lloyd_steps": 3,
+              "max_targets": 4,
+              "w_normal": 4.0,
+              "w_preference": 4.0
+            },
+            "relief": {
+              "enabled": true
+            },
+            "rings": {
+              "enabled": true,
+              "high_quantile": 0.9,
+              "low_quantile": 0.15,
+              "max_candidates": 4,
+              "max_charts": 4,
+              "min_confidence": 0.15,
+              "section_samples": 12
+            },
+            "scale": {
+              "corridor_radius": 0.0,
+              "corridor_scale": 0.0,
+              "max_steps": 64,
+              "mode": "physical",
+              "reference_area": 0.0,
+              "reference_length": 0.0
+            },
+            "search": {
+              "feature_candidates_per_chart": 4,
+              "feature_solves_per_chart": 12,
+              "prune_dominated": true
+            },
+            "shells": {
+              "enabled": true,
+              "max_candidates": 3,
+              "max_samples": 20000,
+              "min_confidence": 0.5,
+              "min_correspondence": 0.7,
+              "min_faces": 16,
+              "smoothing_passes": 3,
+              "speckle_fraction": 0.03,
+              "thin_ratio": 0.15
+            },
+            "spur_removal": {
+              "enabled": true
+            },
+            "strict_repair": {
+              "enabled": true
+            },
+            "symmetry": {
+              "geometry_tolerance": 1e-06,
+              "map_tolerance": 0.003,
+              "max_candidates": 3,
+              "mode": "asymmetric",
+              "on_conflict": "reject_pair",
+              "plane_normal": null,
+              "plane_offset": 0.0
+            }
+          },
+          "description": "enhanced_v1 proposal policy: objective weights (Section 11.2), per-chart search bounds (Section 21) and strict-validity tolerances; legacy_010 and native_baseline ignore it",
+          "properties": {
+            "boundary_refinement": {
+              "additionalProperties": false,
+              "default": {
+                "enabled": true
+              },
+              "description": "enhanced_v1: every new or changed seam chain of a region, ring, cavity or shell proposal goes through the baseline's chain refinement (corridors, turn, flow, drift, convexity and the crease-discounted exposure) inside the proposal's faces before the transaction evaluates it (requires refine_paths)",
+              "properties": {
+                "enabled": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "cavities": {
+              "additionalProperties": false,
+              "default": {
+                "cone_half_angle_deg": 75.0,
+                "enabled": true,
+                "level_samples": 16,
+                "max_area_fraction": 0.3,
+                "max_cavities": 4,
+                "max_samples": 20000,
+                "min_area_fraction": 0.01,
+                "min_chart_faces": 16,
+                "min_confidence": 0.25,
+                "min_depth_ratio": 0.2,
+                "occlusion_threshold": 0.25,
+                "rays_per_sample": 8,
+                "reach_fraction": 0.08,
+                "slit_depth_ratio": 0.35
+              },
+              "description": "enhanced_v1 confidence-gated cavity proposals (T36): same-component cone rays on the geometry BVH (samples, rays, cone, reach as a fraction of the component diagonal), refinement levels, detector filters and bounds",
+              "properties": {
+                "cone_half_angle_deg": {
+                  "default": 75.0,
+                  "maximum": 89,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "level_samples": {
+                  "default": 16,
+                  "maximum": 256,
+                  "minimum": 2,
+                  "type": "integer"
+                },
+                "max_area_fraction": {
+                  "default": 0.3,
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "max_cavities": {
+                  "default": 4,
+                  "maximum": 256,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "max_samples": {
+                  "default": 20000,
+                  "maximum": 1000000,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "min_area_fraction": {
+                  "default": 0.01,
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "min_chart_faces": {
+                  "default": 16,
+                  "maximum": 9223372036854775807,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "min_confidence": {
+                  "default": 0.25,
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "min_depth_ratio": {
+                  "default": 0.2,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "occlusion_threshold": {
+                  "default": 0.25,
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "rays_per_sample": {
+                  "default": 8,
+                  "maximum": 256,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "reach_fraction": {
+                  "default": 0.08,
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "slit_depth_ratio": {
+                  "default": 0.35,
+                  "minimum": 0,
+                  "type": "number"
+                }
+              },
+              "type": "object"
+            },
+            "constraint_repair": {
+              "additionalProperties": false,
+              "default": {
+                "enabled": true
+              },
+              "description": "enhanced_v1 constraint repair of painted hard constraints (T29, Section 21 step 1; an ablation switch): off, a candidate zero violating required or forbidden edges gets no repair proposal and such a run is refused (constraint_conflict); the constraints themselves are never relaxed",
+              "properties": {
+                "enabled": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "endpoint_slide": {
+              "additionalProperties": false,
+              "default": {
+                "enabled": true,
+                "max_slide_distance": 0.0,
+                "vertex_budget": 20000,
+                "w_slide": 0.25,
+                "w_tangent": 0.5,
+                "w_turn": 0.5
+              },
+              "description": "enhanced_v1 sliding seam endpoints on tube-like patches (T30/T31): optional maximum slide distance along a rim (0 disables it), whole-patch search vertex budget and route cost weights",
+              "properties": {
+                "enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "max_slide_distance": {
+                  "default": 0.0,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "vertex_budget": {
+                  "default": 20000,
+                  "maximum": 10000000,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "w_slide": {
+                  "default": 0.25,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "w_tangent": {
+                  "default": 0.5,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "w_turn": {
+                  "default": 0.5,
+                  "minimum": 0,
+                  "type": "number"
+                }
+              },
+              "type": "object"
+            },
+            "max_candidates_per_chart": {
+              "default": 8,
+              "maximum": 1024,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "max_solves_per_chart": {
+              "default": 24,
+              "maximum": 4096,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "objective": {
+              "additionalProperties": false,
+              "default": {
+                "chart_count_weight": 0.01,
+                "significance": {
+                  "practical_floor": 0.004
+                },
+                "tie_band": 1e-09,
+                "version": "seam_objective.v2",
+                "w_exposure": 2.0,
+                "w_fragment": 0.1,
+                "w_length": 1.0,
+                "w_turn": 0.05
+              },
+              "properties": {
+                "chart_count_weight": {
+                  "default": 0.01,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "significance": {
+                  "additionalProperties": false,
+                  "default": {
+                    "practical_floor": 0.004
+                  },
+                  "description": "seam_objective.v2 significance rule (enhanced_v1): where the exposure-sampling margin U applies, a change decided by J is adopted only when it lowers J by more than max(U, practical_floor * |J of the incumbent|); a change that only removes seam edges has no floor, and budget, compliance and strict-defect decisions never see it",
+                  "properties": {
+                    "practical_floor": {
+                      "default": 0.004,
+                      "maximum": 0.1,
+                      "minimum": 0,
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "tie_band": {
+                  "default": 1e-09,
+                  "maximum": 0.5,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "version": {
+                  "default": "seam_objective.v2",
+                  "description": "the ordering over J: seam_objective.v1 compares J within the tie band only (T40); seam_objective.v2 also treats a J difference within the sampling uncertainty of the raw exposure term as a tie that keeps the incumbent",
+                  "enum": [
+                    "seam_objective.v1",
+                    "seam_objective.v2"
+                  ],
+                  "type": "string"
+                },
+                "w_exposure": {
+                  "default": 2.0,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "w_fragment": {
+                  "default": 0.1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "w_length": {
+                  "default": 1.0,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "w_turn": {
+                  "default": 0.05,
+                  "minimum": 0,
+                  "type": "number"
+                }
+              },
+              "type": "object"
+            },
+            "overlap_area_tolerance": {
+              "default": 1e-10,
+              "maximum": 1e-06,
+              "minimum": 0,
+              "type": "number"
+            },
+            "pin_tolerance": {
+              "default": 1e-09,
+              "maximum": 1e-06,
+              "minimum": 0,
+              "type": "number"
+            },
+            "preferences": {
+              "additionalProperties": false,
+              "default": {
+                "allow_attribute": "cleanseams_allow",
+                "avoid_attribute": "cleanseams_avoid",
+                "forbidden_attribute": "cleanseams_forbidden",
+                "required_attribute": "cleanseams_required",
+                "w_allow": 4.0,
+                "w_avoid": 4.0,
+                "w_crease": 1.0,
+                "w_exposure": 2.0,
+                "w_view": 2.0
+              },
+              "description": "enhanced_v1 painted preferences (T29): routing heuristic weights and the host attribute names read for required/forbidden edges and allow/avoid points (documented names or explicit aliases; empty disables one)",
+              "properties": {
+                "allow_attribute": {
+                  "default": "cleanseams_allow",
+                  "type": "string"
+                },
+                "avoid_attribute": {
+                  "default": "cleanseams_avoid",
+                  "type": "string"
+                },
+                "forbidden_attribute": {
+                  "default": "cleanseams_forbidden",
+                  "type": "string"
+                },
+                "required_attribute": {
+                  "default": "cleanseams_required",
+                  "type": "string"
+                },
+                "w_allow": {
+                  "default": 4.0,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "w_avoid": {
+                  "default": 4.0,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "w_crease": {
+                  "default": 1.0,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "w_exposure": {
+                  "default": 2.0,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "w_view": {
+                  "default": 2.0,
+                  "minimum": 0,
+                  "type": "number"
+                }
+              },
+              "type": "object"
+            },
+            "regions": {
+              "additionalProperties": false,
+              "default": {
+                "enabled": false,
+                "keep_feature_seams": true,
+                "lloyd_steps": 3,
+                "max_targets": 4,
+                "w_normal": 4.0,
+                "w_preference": 4.0
+              },
+              "description": "enhanced_v1 preference-aware region proposals (T34): dual crossing weight centroid_distance * (1 + w_normal*normal_change + w_preference*strength^2), Lloyd steps and targets per pass",
+              "properties": {
+                "enabled": {
+                  "default": false,
+                  "type": "boolean"
+                },
+                "keep_feature_seams": {
+                  "default": true,
+                  "description": "GB (visual review V3): the incumbent's seams on hard feature edges (|dihedral| at least the baseline seam cost's feature angle; never a painted forbidden edge) bound the region growth like required and locked cuts and stay cut wherever the regrown regions meet across them",
+                  "type": "boolean"
+                },
+                "lloyd_steps": {
+                  "default": 3,
+                  "maximum": 256,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "max_targets": {
+                  "default": 4,
+                  "maximum": 1024,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "w_normal": {
+                  "default": 4.0,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "w_preference": {
+                  "default": 4.0,
+                  "minimum": 0,
+                  "type": "number"
+                }
+              },
+              "type": "object"
+            },
+            "relief": {
+              "additionalProperties": false,
+              "default": {
+                "enabled": true
+              },
+              "description": "enhanced_v1 sector-aware hotspot relief (T32; settings: native record hotspot_relief.v1)",
+              "properties": {
+                "enabled": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "rings": {
+              "additionalProperties": false,
+              "default": {
+                "enabled": true,
+                "high_quantile": 0.9,
+                "low_quantile": 0.15,
+                "max_candidates": 4,
+                "max_charts": 4,
+                "min_confidence": 0.15,
+                "section_samples": 12
+              },
+              "description": "enhanced_v1 constriction/crease ring proposals (T35): distance-level sections from a patch opening, the confidence gate and the candidate bounds per chart and pass",
+              "properties": {
+                "enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "high_quantile": {
+                  "default": 0.9,
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "low_quantile": {
+                  "default": 0.15,
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "max_candidates": {
+                  "default": 4,
+                  "maximum": 256,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "max_charts": {
+                  "default": 4,
+                  "maximum": 1024,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "min_confidence": {
+                  "default": 0.15,
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "section_samples": {
+                  "default": 12,
+                  "maximum": 256,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              },
+              "type": "object"
+            },
+            "scale": {
+              "additionalProperties": false,
+              "default": {
+                "corridor_radius": 0.0,
+                "corridor_scale": 0.0,
+                "max_steps": 64,
+                "mode": "physical",
+                "reference_area": 0.0,
+                "reference_length": 0.0
+              },
+              "description": "enhanced_v1 physical-distance policy (T39): physical (geodesic corridors, area floors and smoothing in object-space units frozen at the operation start; explicit reference_length, reference_area and corridor_radius for cross-tessellation work) or hops (the legacy hop-ring corridors, face-count floors and step counts, for comparisons with native_baseline)",
+              "properties": {
+                "corridor_radius": {
+                  "default": 0.0,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "corridor_scale": {
+                  "default": 0.0,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "max_steps": {
+                  "default": 64,
+                  "maximum": 4096,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "mode": {
+                  "default": "physical",
+                  "enum": [
+                    "physical",
+                    "hops"
+                  ],
+                  "type": "string"
+                },
+                "reference_area": {
+                  "default": 0.0,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "reference_length": {
+                  "default": 0.0,
+                  "minimum": 0,
+                  "type": "number"
+                }
+              },
+              "type": "object"
+            },
+            "search": {
+              "additionalProperties": false,
+              "default": {
+                "feature_candidates_per_chart": 4,
+                "feature_solves_per_chart": 12,
+                "prune_dominated": true
+              },
+              "description": "enhanced_v1 bounded alternative search (T40, Section 21): each feature's share of the per-chart candidate and solve bounds, and whether a candidate whose exact objective proves it cannot win is refused before its solve",
+              "properties": {
+                "feature_candidates_per_chart": {
+                  "default": 4,
+                  "maximum": 1024,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "feature_solves_per_chart": {
+                  "default": 12,
+                  "maximum": 4096,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "prune_dominated": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "shells": {
+              "additionalProperties": false,
+              "default": {
+                "enabled": true,
+                "max_candidates": 3,
+                "max_samples": 20000,
+                "min_confidence": 0.5,
+                "min_correspondence": 0.7,
+                "min_faces": 16,
+                "smoothing_passes": 3,
+                "speckle_fraction": 0.03,
+                "thin_ratio": 0.15
+              },
+              "description": "enhanced_v1 thin-shell front/back rim proposals (T37): nominating thickness ratio, opposite-side correspondence and confidence gates, label smoothing and speckle repair, alternatives per component (baseline included)",
+              "properties": {
+                "enabled": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "max_candidates": {
+                  "default": 3,
+                  "maximum": 256,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "max_samples": {
+                  "default": 20000,
+                  "maximum": 1000000,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "min_confidence": {
+                  "default": 0.5,
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "min_correspondence": {
+                  "default": 0.7,
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "min_faces": {
+                  "default": 16,
+                  "maximum": 9223372036854775807,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "smoothing_passes": {
+                  "default": 3,
+                  "maximum": 256,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "speckle_fraction": {
+                  "default": 0.03,
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "thin_ratio": {
+                  "default": 0.15,
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                }
+              },
+              "type": "object"
+            },
+            "spur_removal": {
+              "additionalProperties": false,
+              "default": {
+                "enabled": true
+              },
+              "description": "enhanced_v1 validated unnecessary-spur removal (T33; the legacy spur cleanup is unchanged)",
+              "properties": {
+                "enabled": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "strict_repair": {
+              "additionalProperties": false,
+              "default": {
+                "enabled": true
+              },
+              "description": "enhanced_v1 validated strict-overlap repair (Section 11.3 policy; native record strict_overlap_repair.v1): candidate zero's charts that fail only the strict overlap check are re-mapped or minimally split through the transaction; a defect left unrepaired is reported and keeps native_baseline's decision",
+              "properties": {
+                "enabled": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "symmetry": {
+              "additionalProperties": false,
+              "default": {
+                "geometry_tolerance": 1e-06,
+                "map_tolerance": 0.003,
+                "max_candidates": 3,
+                "mode": "asymmetric",
+                "on_conflict": "reject_pair",
+                "plane_normal": null,
+                "plane_offset": 0.0
+              },
+              "description": "enhanced_v1 operational symmetry (T38): asymmetric (view-optimal, unpaired moves), strict (every move paired with its mirror image as one transaction on an exact combinatorial correspondence) or approximate (metric-only diagnostics); the conflict policy, an explicit or detected plane, the counterpart and strict geometry tolerances (fractions of the bounding-box diagonal) and the symmetrization alternatives per pass",
+              "properties": {
+                "geometry_tolerance": {
+                  "default": 1e-06,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "map_tolerance": {
+                  "default": 0.003,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "max_candidates": {
+                  "default": 3,
+                  "maximum": 256,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "mode": {
+                  "default": "asymmetric",
+                  "enum": [
+                    "asymmetric",
+                    "strict",
+                    "approximate"
+                  ],
+                  "type": "string"
+                },
+                "on_conflict": {
+                  "default": "reject_pair",
+                  "enum": [
+                    "reject_pair",
+                    "disable_for_proposal"
+                  ],
+                  "type": "string"
+                },
+                "plane_normal": {
+                  "default": null,
+                  "items": {
+                    "default": 0.0,
+                    "type": "number"
+                  },
+                  "maxItems": 3,
+                  "minItems": 3,
+                  "type": [
+                    "array",
+                    "null"
+                  ]
+                },
+                "plane_offset": {
+                  "default": 0.0,
+                  "type": "number"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "fallback_density": {
+          "default": 0.01,
+          "type": "number"
+        },
+        "final_gate": {
+          "default": true,
+          "type": "boolean"
+        },
+        "final_gate_tolerance": {
+          "default": 1.05,
+          "type": "number"
+        },
+        "gate": {
+          "default": true,
+          "type": "boolean"
+        },
+        "gate_max_components": {
+          "default": 200,
+          "maximum": 9223372036854775807,
+          "minimum": -9223372036854775808,
+          "type": "integer"
+        },
+        "gate_max_degenerate": {
+          "default": 0.2,
+          "type": "number"
+        },
+        "gate_max_faces": {
+          "default": 1500000,
+          "maximum": 9223372036854775807,
+          "minimum": -9223372036854775808,
+          "type": "integer"
+        },
+        "gate_min_main_fraction": {
+          "default": 0.3,
+          "type": "number"
+        },
+        "generate": {
+          "default": true,
+          "type": "boolean"
+        },
+        "host": {
+          "additionalProperties": false,
+          "default": {
+            "last_report": "",
+            "last_status": "",
+            "pack_after": "none",
+            "protect_existing": true,
+            "show_advanced": false
+          },
+          "description": "Blender settings carried with the options for the host; the engine and the command line do not read them",
+          "properties": {
+            "last_report": {
+              "default": "",
+              "type": "string"
+            },
+            "last_status": {
+              "default": "",
+              "type": "string"
+            },
+            "pack_after": {
+              "default": "none",
+              "enum": [
+                "none",
+                "blender"
+              ],
+              "type": "string"
+            },
+            "protect_existing": {
+              "default": true,
+              "type": "boolean"
+            },
+            "show_advanced": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "layout": {
+          "additionalProperties": false,
+          "default": {
+            "absorb_relax": 2.0,
+            "arap_iterations": 6,
+            "arc_moves": true,
+            "evaluate_true_distortion": true,
+            "exposure_K": 64,
+            "exposure_weight": 1.0,
+            "feature_angle": 60.0,
+            "feature_lock_fraction": 0.5,
+            "feature_nms_ratio": 0.6,
+            "feature_scale": 2,
+            "hide_dir": null,
+            "isoperimetric_min_faces": 40,
+            "lock_features": false,
+            "max_anisotropy_max": 25.0,
+            "max_anisotropy_p95": 1.6,
+            "max_anisotropy_p99": 4.0,
+            "max_area_p95": 1.8,
+            "max_defect": null,
+            "max_extend": 8,
+            "max_faces_fraction": 1.0,
+            "max_isoperimetric_growth": 1.1,
+            "max_merge_edges": 0,
+            "max_patches": 4000,
+            "max_rounds": 60,
+            "max_split_passes": 6,
+            "min_feature_chain": 6,
+            "min_fusion": 0.15,
+            "min_island_faces": 8,
+            "min_island_fraction": 0.002,
+            "prefer_features": false,
+            "priority": "compact",
+            "relaxed_motorcycles": false,
+            "revolution_residual": 0.04,
+            "seed_density": 400,
+            "seeding": "auto",
+            "segment_iterations": 3,
+            "solver": "arap",
+            "split_min_faces": 40,
+            "spur_removal": true,
+            "strict_budget": false,
+            "strip_isoperimetric": 12.0,
+            "strip_max_width": 3,
+            "use_exposure": true
+          },
+          "properties": {
+            "absorb_relax": {
+              "default": 2.0,
+              "type": "number"
+            },
+            "arap_iterations": {
+              "default": 6,
+              "maximum": 9223372036854775807,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "arc_moves": {
+              "default": true,
+              "type": "boolean"
+            },
+            "evaluate_true_distortion": {
+              "default": true,
+              "type": "boolean"
+            },
+            "exposure_K": {
+              "default": 64,
+              "maximum": 9223372036854775807,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "exposure_weight": {
+              "default": 1.0,
+              "type": "number"
+            },
+            "feature_angle": {
+              "default": 60.0,
+              "type": "number"
+            },
+            "feature_lock_fraction": {
+              "default": 0.5,
+              "type": "number"
+            },
+            "feature_nms_ratio": {
+              "default": 0.6,
+              "type": "number"
+            },
+            "feature_scale": {
+              "default": 2,
+              "maximum": 9223372036854775807,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "hide_dir": {
+              "default": null,
+              "items": {
+                "default": 0.0,
+                "type": "number"
+              },
+              "maxItems": 3,
+              "minItems": 3,
+              "type": [
+                "array",
+                "null"
+              ]
+            },
+            "isoperimetric_min_faces": {
+              "default": 40,
+              "maximum": 9223372036854775807,
+              "minimum": -9223372036854775808,
+              "type": "integer"
+            },
+            "lock_features": {
+              "default": false,
+              "type": "boolean"
+            },
+            "max_anisotropy_max": {
+              "default": 25.0,
+              "type": "number"
+            },
+            "max_anisotropy_p95": {
+              "default": 1.6,
+              "type": "number"
+            },
+            "max_anisotropy_p99": {
+              "default": 4.0,
+              "type": "number"
+            },
+            "max_area_p95": {
+              "default": 1.8,
+              "type": "number"
+            },
+            "max_defect": {
+              "default": null,
+              "description": "null means unbounded legacy angle-defect proxy; no nonfinite number is accepted",
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "max_extend": {
+              "default": 8,
+              "maximum": 9223372036854775807,
+              "minimum": -9223372036854775808,
+              "type": "integer"
+            },
+            "max_faces_fraction": {
+              "default": 1.0,
+              "type": "number"
+            },
+            "max_isoperimetric_growth": {
+              "default": 1.1,
+              "type": "number"
+            },
+            "max_merge_edges": {
+              "default": 0,
+              "maximum": 9223372036854775807,
+              "minimum": -9223372036854775808,
+              "type": "integer"
+            },
+            "max_patches": {
+              "default": 4000,
+              "maximum": 9223372036854775807,
+              "minimum": -9223372036854775808,
+              "type": "integer"
+            },
+            "max_rounds": {
+              "default": 60,
+              "maximum": 9223372036854775807,
+              "minimum": -9223372036854775808,
+              "type": "integer"
+            },
+            "max_split_passes": {
+              "default": 6,
+              "maximum": 9223372036854775807,
+              "minimum": -9223372036854775808,
+              "type": "integer"
+            },
+            "min_feature_chain": {
+              "default": 6,
+              "maximum": 9223372036854775807,
+              "minimum": -9223372036854775808,
+              "type": "integer"
+            },
+            "min_fusion": {
+              "default": 0.15,
+              "type": "number"
+            },
+            "min_island_faces": {
+              "default": 8,
+              "maximum": 9223372036854775807,
+              "minimum": -9223372036854775808,
+              "type": "integer"
+            },
+            "min_island_fraction": {
+              "default": 0.002,
+              "type": "number"
+            },
+            "prefer_features": {
+              "default": false,
+              "type": "boolean"
+            },
+            "priority": {
+              "default": "compact",
+              "description": "compact, small_first, or anything else for longest-arc order (source merge_patches)",
+              "type": "string"
+            },
+            "relaxed_motorcycles": {
+              "default": false,
+              "type": "boolean"
+            },
+            "revolution_residual": {
+              "default": 0.04,
+              "type": "number"
+            },
+            "seed_density": {
+              "default": 400,
+              "maximum": 9223372036854775807,
+              "minimum": -9223372036854775808,
+              "type": "integer"
+            },
+            "seeding": {
+              "default": "auto",
+              "description": "auto, motorcycle or voronoi; any other value is refused when seams are generated (source generate_seams)",
+              "type": "string"
+            },
+            "segment_iterations": {
+              "default": 3,
+              "maximum": 9223372036854775807,
+              "minimum": -9223372036854775808,
+              "type": "integer"
+            },
+            "solver": {
+              "default": "arap",
+              "description": "lscm, harmonic, or anything else for ARAP (source flatten_chart)",
+              "type": "string"
+            },
+            "split_min_faces": {
+              "default": 40,
+              "maximum": 9223372036854775807,
+              "minimum": -9223372036854775808,
+              "type": "integer"
+            },
+            "spur_removal": {
+              "default": true,
+              "type": "boolean"
+            },
+            "strict_budget": {
+              "default": false,
+              "type": "boolean"
+            },
+            "strip_isoperimetric": {
+              "default": 12.0,
+              "type": "number"
+            },
+            "strip_max_width": {
+              "default": 3,
+              "maximum": 9223372036854775807,
+              "minimum": -9223372036854775808,
+              "type": "integer"
+            },
+            "use_exposure": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "max_growth": {
+          "default": 1.1,
+          "type": "number"
+        },
+        "orient_islands": {
+          "default": true,
+          "type": "boolean"
+        },
+        "p95_growth": {
+          "default": 1.05,
+          "type": "number"
+        },
+        "packing": {
+          "additionalProperties": false,
+          "default": {
+            "allow_mirroring": false,
+            "border_px": 2.0,
+            "equalize_density": true,
+            "keep_orientation": true,
+            "padding_px": 4.0,
+            "texture_height": 2048,
+            "texture_width": 2048,
+            "threads": 1,
+            "tiles": [
+              1001
+            ],
+            "time_budget": 0.0,
+            "trials": 8
+          },
+          "properties": {
+            "allow_mirroring": {
+              "default": false,
+              "type": "boolean"
+            },
+            "border_px": {
+              "default": 2.0,
+              "minimum": 0,
+              "type": "number"
+            },
+            "equalize_density": {
+              "default": true,
+              "type": "boolean"
+            },
+            "keep_orientation": {
+              "default": true,
+              "type": "boolean"
+            },
+            "padding_px": {
+              "default": 4.0,
+              "minimum": 0,
+              "type": "number"
+            },
+            "texture_height": {
+              "default": 2048,
+              "maximum": 9223372036854775807,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "texture_width": {
+              "default": 2048,
+              "maximum": 9223372036854775807,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "threads": {
+              "default": 1,
+              "maximum": 9223372036854775807,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "tiles": {
+              "default": [
+                1001
+              ],
+              "items": {
+                "default": 0,
+                "maximum": 9223372036854775807,
+                "minimum": 1001,
+                "type": "integer"
+              },
+              "minItems": 1,
+              "type": "array",
+              "uniqueItems": true
+            },
+            "time_budget": {
+              "default": 0.0,
+              "minimum": 0,
+              "type": "number"
+            },
+            "trials": {
+              "default": 8,
+              "maximum": 9223372036854775807,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "passthrough_fraction": {
+          "default": 0.001,
+          "type": "number"
+        },
+        "paths": {
+          "additionalProperties": false,
+          "default": {
+            "anchor_tangent_weight": 0.5,
+            "corridor_max_rings": 4,
+            "corridor_rings": 2,
+            "require_budget": false,
+            "require_improvement": true,
+            "variants": [
+              [
+                4.0,
+                2.0,
+                3.0
+              ],
+              [
+                2.0,
+                4.0,
+                3.0
+              ],
+              [
+                6.0,
+                2.0,
+                1.5
+              ],
+              [
+                4.0,
+                2.0,
+                0.5
+              ]
+            ],
+            "w_convex": 0.5,
+            "w_drift": 3.0,
+            "w_exposure": 0.5,
+            "w_flow": 2.0,
+            "w_turn": 4.0
+          },
+          "properties": {
+            "anchor_tangent_weight": {
+              "default": 0.5,
+              "type": "number"
+            },
+            "corridor_max_rings": {
+              "default": 4,
+              "description": "any integer under legacy_010; at least 1 under other policies (FIX-02)",
+              "maximum": 9223372036854775807,
+              "minimum": -9223372036854775808,
+              "type": "integer"
+            },
+            "corridor_rings": {
+              "default": 2,
+              "description": "any integer under legacy_010 (the source searches from it); at least 1 under other policies (FIX-02)",
+              "maximum": 9223372036854775807,
+              "minimum": -9223372036854775808,
+              "type": "integer"
+            },
+            "require_budget": {
+              "default": false,
+              "type": "boolean"
+            },
+            "require_improvement": {
+              "default": true,
+              "type": "boolean"
+            },
+            "variants": {
+              "default": [
+                [
+                  4.0,
+                  2.0,
+                  3.0
+                ],
+                [
+                  2.0,
+                  4.0,
+                  3.0
+                ],
+                [
+                  6.0,
+                  2.0,
+                  1.5
+                ],
+                [
+                  4.0,
+                  2.0,
+                  0.5
+                ]
+              ],
+              "description": "legacy_010 only: the fixed weight variants the source searches; other policies derive them from w_turn, w_flow and w_drift (FIX-01)",
+              "items": {
+                "default": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "items": {
+                  "default": 0.0,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "maxItems": 3,
+                "minItems": 3,
+                "type": "array"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            "w_convex": {
+              "default": 0.5,
+              "minimum": 0,
+              "type": "number"
+            },
+            "w_drift": {
+              "default": 3.0,
+              "minimum": 0,
+              "type": "number"
+            },
+            "w_exposure": {
+              "default": 0.5,
+              "minimum": 0,
+              "type": "number"
+            },
+            "w_flow": {
+              "default": 2.0,
+              "minimum": 0,
+              "type": "number"
+            },
+            "w_turn": {
+              "default": 4.0,
+              "minimum": 0,
+              "type": "number"
+            }
+          },
+          "type": "object"
+        },
+        "policy": {
+          "default": "native_baseline",
+          "enum": [
+            "legacy_010",
+            "native_baseline",
+            "enhanced_v1",
+            "repair_v1"
+          ],
+          "type": "string"
+        },
+        "profile": {
+          "default": "custom",
+          "enum": [
+            "auto",
+            "custom"
+          ],
+          "type": "string"
+        },
+        "refine_cycles": {
+          "default": true,
+          "type": "boolean"
+        },
+        "refine_guard": {
+          "default": true,
+          "type": "boolean"
+        },
+        "refine_passes": {
+          "default": 3,
+          "maximum": 9223372036854775807,
+          "minimum": -9223372036854775808,
+          "type": "integer"
+        },
+        "refine_paths": {
+          "default": true,
+          "type": "boolean"
+        },
+        "repair": {
+          "additionalProperties": false,
+          "default": {
+            "host_proposal_seconds": 0.0,
+            "join_mode": "small",
+            "join_seconds": 0.0,
+            "minimum_relative_area": 0.0,
+            "region_recovery_seconds": 0.0,
+            "relax_faces_seconds": 0.0,
+            "require_open_protected_cuts": false,
+            "singleton_seconds": 0.0,
+            "storage_precision": "float64"
+          },
+          "properties": {
+            "host_proposal_seconds": {
+              "default": 0.0,
+              "minimum": 0,
+              "type": "number"
+            },
+            "join_mode": {
+              "default": "small",
+              "enum": [
+                "small",
+                "fewer"
+              ],
+              "type": "string"
+            },
+            "join_seconds": {
+              "default": 0.0,
+              "minimum": 0,
+              "type": "number"
+            },
+            "minimum_relative_area": {
+              "default": 0.0,
+              "minimum": 0,
+              "type": "number"
+            },
+            "region_recovery_seconds": {
+              "default": 0.0,
+              "minimum": 0,
+              "type": "number"
+            },
+            "relax_faces_seconds": {
+              "default": 0.0,
+              "minimum": 0,
+              "type": "number"
+            },
+            "require_open_protected_cuts": {
+              "default": false,
+              "type": "boolean"
+            },
+            "singleton_seconds": {
+              "default": 0.0,
+              "minimum": 0,
+              "type": "number"
+            },
+            "storage_precision": {
+              "default": "float64",
+              "enum": [
+                "float32",
+                "float64"
+              ],
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "repair_exempt_faces": {
+          "default": 3,
+          "maximum": 9223372036854775807,
+          "minimum": -9223372036854775808,
+          "type": "integer"
+        },
+        "repair_exempt_fraction": {
+          "default": 0.01,
+          "type": "number"
+        },
+        "solver": {
+          "additionalProperties": false,
+          "default": {
+            "backend": "superlu",
+            "iterations": 10,
+            "method": "arap"
+          },
+          "properties": {
+            "backend": {
+              "default": "superlu",
+              "description": "recorded, not a selector: the pipeline's sparse solves use the SciPy-compatible numerical policy",
+              "enum": [
+                "superlu",
+                "numpy_compat"
+              ],
+              "type": "string"
+            },
+            "iterations": {
+              "default": 10,
+              "description": "iterations a host session asks the host's unwrap for; the core backend uses 10 (source CoreBackend)",
+              "maximum": 9223372036854775807,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "method": {
+              "default": "arap",
+              "description": "recorded, not a selector: the core backend always runs ARAP (source CoreBackend) and a host session the host's unwrap",
+              "enum": [
+                "arap",
+                "lscm",
+                "harmonic",
+                "blender"
+              ],
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "target_islands": {
+          "default": null,
+          "items": {
+            "default": 0,
+            "maximum": 9223372036854775807,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "uniform_density": {
+          "default": true,
+          "type": "boolean"
+        },
+        "version": {
+          "default": 1,
+          "enum": [
+            1
+          ],
+          "maximum": 9223372036854775807,
+          "minimum": -9223372036854775808,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "packing": {},
+    "parameters": {},
+    "pins": {
+      "default": [],
+      "items": {
+        "additionalProperties": false,
+        "default": {
+          "corner": 0,
+          "uv": [
+            0.0,
+            0.0
+          ]
+        },
+        "properties": {
+          "corner": {
+            "default": 0,
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "type": "integer"
+          },
+          "uv": {
+            "default": [
+              0.0,
+              0.0
+            ],
+            "items": {
+              "default": 0.0,
+              "type": "number"
+            },
+            "maxItems": 2,
+            "minItems": 2,
+            "type": "array"
+          }
+        },
+        "required": [
+          "corner",
+          "uv"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "pipeline_capture": {
+      "type": "boolean"
+    },
+    "positions": {
+      "oneOf": [
+        {
+          "default": [],
+          "items": {
+            "default": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "items": {
+              "default": 0.0,
+              "type": "number"
+            },
+            "maxItems": 3,
+            "minItems": 3,
+            "type": "array"
+          },
+          "type": "array"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "byte_length": {
+              "maximum": 18446744073709551615,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "byte_offset": {
+              "maximum": 18446744073709551615,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "dtype": {
+              "enum": [
+                "float64-le"
+              ],
+              "type": "string"
+            },
+            "file": {
+              "description": "Relative path; T18 additionally rejects absolute paths, traversal and symlink escape.",
+              "minLength": 1,
+              "type": "string"
+            },
+            "sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "shape": {
+              "items": {
+                "maximum": 18446744073709551615,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "file",
+            "dtype",
+            "shape",
+            "byte_offset",
+            "byte_length",
+            "sha256"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "random_cut_states": {},
+    "reference_direction": {},
+    "scenarios": {},
+    "schema": {
+      "enum": [
+        "cleanseams.case"
+      ],
+      "type": "string"
+    },
+    "seam_edges": {
+      "default": [],
+      "items": {
+        "default": [
+          0,
+          0
+        ],
+        "items": {
+          "default": 0,
+          "maximum": 9223372036854775807,
+          "minimum": -9223372036854775808,
+          "type": "integer"
+        },
+        "maxItems": 2,
+        "minItems": 2,
+        "type": "array"
+      },
+      "type": "array"
+    },
+    "seam_mask": {
+      "oneOf": [
+        {
+          "default": [],
+          "items": {
+            "default": 0,
+            "maximum": 255,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "byte_length": {
+              "maximum": 18446744073709551615,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "byte_offset": {
+              "maximum": 18446744073709551615,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "dtype": {
+              "enum": [
+                "uint8"
+              ],
+              "type": "string"
+            },
+            "file": {
+              "description": "Relative path; T18 additionally rejects absolute paths, traversal and symlink escape.",
+              "minLength": 1,
+              "type": "string"
+            },
+            "sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "shape": {
+              "items": {
+                "maximum": 18446744073709551615,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "file",
+            "dtype",
+            "shape",
+            "byte_offset",
+            "byte_length",
+            "sha256"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "selected_faces": {
+      "default": [],
+      "items": {
+        "default": 0,
+        "maximum": 255,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "symmetry": {},
+    "uv": {
+      "oneOf": [
+        {
+          "default": null,
+          "items": {
+            "default": [
+              0.0,
+              0.0
+            ],
+            "items": {
+              "default": 0.0,
+              "type": "number"
+            },
+            "maxItems": 2,
+            "minItems": 2,
+            "type": "array"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "byte_length": {
+              "maximum": 18446744073709551615,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "byte_offset": {
+              "maximum": 18446744073709551615,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "dtype": {
+              "enum": [
+                "float64-le"
+              ],
+              "type": "string"
+            },
+            "file": {
+              "description": "Relative path; T18 additionally rejects absolute paths, traversal and symlink escape.",
+              "minLength": 1,
+              "type": "string"
+            },
+            "sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "shape": {
+              "items": {
+                "maximum": 18446744073709551615,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "file",
+            "dtype",
+            "shape",
+            "byte_offset",
+            "byte_length",
+            "sha256"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "version": {
+      "default": 1,
+      "enum": [
+        1
+      ],
+      "maximum": 18446744073709551615,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "view_direction_world": {
+      "default": null,
+      "items": {
+        "default": 0.0,
+        "type": "number"
+      },
+      "maxItems": 3,
+      "minItems": 3,
+      "type": [
+        "array",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "schema",
+    "version",
+    "coordinate_space",
+    "positions",
+    "face_offsets",
+    "corner_vertices"
+  ],
+  "type": "object"
+}

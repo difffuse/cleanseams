@@ -1,0 +1,101 @@
+{
+  "$id": "urn:cleanseams:session:1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "default": {
+    "backend": "superlu",
+    "batch_max_charts": 16,
+    "batch_max_triangles": 50000,
+    "cache_budget_bytes": null,
+    "fragment_unwrap_method": "ANGLE_BASED",
+    "host_capabilities": [],
+    "host_unwrap_method": "MINIMUM_STRETCH",
+    "memory_budget_bytes": 2147483648,
+    "trace_level": "stages",
+    "worker_count": 0
+  },
+  "description": "Structural wire contract; native validation also checks indices, lengths and cross-field invariants.",
+  "properties": {
+    "backend": {
+      "default": "superlu",
+      "type": "string"
+    },
+    "batch_max_charts": {
+      "default": 16,
+      "maximum": 18446744073709551615,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "batch_max_triangles": {
+      "default": 50000,
+      "maximum": 18446744073709551615,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "cache_budget_bytes": {
+      "default": null,
+      "maximum": 18446744073709551615,
+      "minimum": 0,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "fragment_unwrap_method": {
+      "default": "ANGLE_BASED",
+      "enum": [
+        "ANGLE_BASED",
+        "CONFORMAL",
+        "MINIMUM_STRETCH"
+      ],
+      "type": "string"
+    },
+    "host_capabilities": {
+      "default": [],
+      "items": {
+        "default": "",
+        "enum": [
+          "region_proposal"
+        ],
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "host_unwrap_method": {
+      "default": "MINIMUM_STRETCH",
+      "enum": [
+        "ANGLE_BASED",
+        "CONFORMAL",
+        "MINIMUM_STRETCH"
+      ],
+      "type": "string"
+    },
+    "memory_budget_bytes": {
+      "default": 2147483648,
+      "maximum": 18446744073709551615,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "trace_level": {
+      "default": "stages",
+      "type": "string"
+    },
+    "worker_count": {
+      "default": 0,
+      "maximum": 18446744073709551615,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "worker_count",
+    "memory_budget_bytes",
+    "cache_budget_bytes",
+    "trace_level",
+    "backend",
+    "batch_max_charts",
+    "batch_max_triangles"
+  ],
+  "type": "object"
+}
